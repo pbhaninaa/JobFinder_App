@@ -25,10 +25,11 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}>
+
           <Stack.Screen name="Home" component={DashBoard} />
           <Stack.Screen name="Notifications" component={Notifications} />
           <Stack.Screen name="Profile" component={Profile} />
-          <Stack.Screen name="CreateProfile" component={CreateProfile} />
+          <Stack.Screen name="Create" component={CreateProfile} />
           <Stack.Screen name="JobDetails" component={JobDetails} />
           <Stack.Screen name="CompanyDetails" component={CompanyDetails} />
           <Stack.Screen name="Applications" component={Applications} />

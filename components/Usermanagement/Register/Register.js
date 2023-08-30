@@ -22,11 +22,11 @@ export default Register = () => {
 
             </View>
             <View style={Styles.textInputDiv}>
-                <TextInput placeholder="Enter your name here" placeholderTextColor="gray" style={Styles.TextInput} />
+                <TextInput placeholder="Enter your name here" placeholderTextColor="gray" style={Styles.TextInput("#461584")} />
             </View>
 
             <View style={Styles.textInputDiv}>
-                <TextInput placeholder="Email" placeholderTextColor="gray" style={Styles.TextInput} />
+                <TextInput placeholder="Email" placeholderTextColor="gray" style={Styles.TextInput("#461584")} />
             </View>
 
             <View style={Styles.textInputDiv}>

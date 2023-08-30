@@ -175,7 +175,7 @@ export default JobDetails = ({ route }) => {
                     </Svg>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={Styles.applyBtn}
+                    style={Styles.Styles.applyBtn(350)}
                     onPress={() => { Linking.openURL(jobData.job_apply_link) }}
                 >
                     <FontAwesome5 name="file-upload" size={25} color="#E7D5FF" />

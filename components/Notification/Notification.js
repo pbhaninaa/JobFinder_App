@@ -8,11 +8,15 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-export default Applications = () => {
+export default Applications = ({route}) => {
     
+    const { jobDatas } = route.params;
   const navigation = useNavigation();
-    const [selectedTab, setSelectedTab] = useState('applications'); // Initialize with 'applications'
-
+    const [selectedTab, setSelectedTab] = useState('applications');
+    const JobTittleSubString = (Job_Name) => {
+        const name = Job_Name.substr(0, 18);
+        return Job_Name.length > 18 ? name + '...' : name
+    };
     const handleTabChange = (tab) => {
         setSelectedTab(tab);
     };
@@ -39,9 +43,11 @@ export default Applications = () => {
                         <View style={Styles.flex}>
                             <View style={Styles.iconContainerView}><Ionicons name="notifications" size={35} color="aliceblue" /></View>
                             <View style={Styles.postDetails}>
-                                <Text style={Styles.dashboardText}>Your Application was succecfully submitted.</Text>
+                            <Text style={Styles.more}>{jobData.job_employment_type}</Text>
+                            <Text style={Styles.dashboardText}>{JobTittleSubString(jobData.job_title)}</Text>
+                            <Text style={{ fontSize: 20, color: 'lightgrey' }}>{jobData?.job_city}.{jobData?.job_state}.{jobData?.job_country}</Text>
 
-                            </View>
+                        </View>
                         </View>
                         <Text style={{ fontSize: 20, color: 'grey' }}>
                             The kebab menu, also known as the three dots menu.

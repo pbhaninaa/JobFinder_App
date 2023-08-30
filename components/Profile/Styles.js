@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 
 const ExternalStyles = StyleSheet.create({
+  container:{},
   content: {
     flex: 1,
     marginTop: 25,
@@ -228,6 +229,7 @@ const ExternalStyles = StyleSheet.create({
     fontWeight: "bolder",
     marginBottom: 9,
   }),
+
   expandIcon: {
     color: "orange",
     marginTop: 2,

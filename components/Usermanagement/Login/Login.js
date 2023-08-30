@@ -22,10 +22,10 @@ export default Login = () => {
                 </TouchableOpacity>
             </View>
             <View style={Styles.textInputDiv}>
-                <TextInput placeholder="Enter your text here" placeholderTextColor="gray" style={Styles.TextInput} />
+                <TextInput placeholder="Enter your text here" placeholderTextColor="gray" style={Styles.TextInput("#461584")} />
             </View>
             <View style={Styles.textInputDiv}>
-                <TextInput placeholder="Password"  secureTextEntry={true} placeholderTextColor="gray" style={Styles.TextInput} />
+                <TextInput placeholder="Password"  secureTextEntry={true} placeholderTextColor="gray" style={Styles.TextInput("#461584")} />
                 <TouchableOpacity >
                     <Text style={Styles.show}>Show</Text>
                 </TouchableOpacity>

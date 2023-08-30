@@ -17,8 +17,7 @@ export const Styles = StyleSheet.create({
 
   LoginWithMedia: {
     flex: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center', 
     height: 90,
     width: 150,
     borderRadius: 10,
@@ -26,6 +25,7 @@ export const Styles = StyleSheet.create({
     color: '#000000'
   },
   searchInputDiv: {
+    justifyContent: 'space-around',
     backgroundColor: 'white',
     shadowColor: '#000',
     shadowOffset: {
@@ -44,6 +44,30 @@ export const Styles = StyleSheet.create({
     paddingStart: 15,
     fontSize: 20,
     top: -30,
+    // margin: 5,
+    backgroundColor: 'white'
+  },
+  searchInputDivs: {
+    justifyContent: 'space-between',
+    backgroundColor: 'white',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    flex: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: 350,
+    padding:12,
+    height: 60,
+    flexShrink: 0,
+    borderRadius: 15,
+    paddingStart: 15,
+    marginTop: 5,
+    marginBottom: 5,
     // margin: 5,
     backgroundColor: 'white'
   },
@@ -138,15 +162,24 @@ export const Styles = StyleSheet.create({
     fontSize: 28,
     width: 300
   },
-  TextInput: {
+  flexingWithIcon:{
+    flex: 0,
+    paddingBottom: 15,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginTop: 10,
+    width: 350
+  },
+  TextInput:(bgColor,InputWith)=>( {
+    paddingLeft: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    // color: 'aliceblue',
-    width: 250,
+    backgroundColor: bgColor,
+    width: InputWith,
     height: 50,
     margin: 5,
     borderRadius: 10,
-  },
+  }),
   Cardnumber: {
     color: '#E7d5ff',
     fontSize: 30,
@@ -304,13 +337,13 @@ export const Styles = StyleSheet.create({
     color: 'white',
     borderRadius: 16
   },
-  applyBtn: {
+  applyBtn:(btnWith)=>( {
     flex: 0,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
     height: 55,
-    width: '60%',
+    width: btnWith,
     backgroundColor: 'red',
     borderRadius: 15,
     borderRadius: 20,
@@ -323,7 +356,7 @@ export const Styles = StyleSheet.create({
     shadowOpacity: 0.47,
     shadowRadius: 21,
     elevation: 5,
-  },
+  }),
   availablepPositionsBtn: {
     flex: 0,
     flexDirection: 'row',
@@ -349,12 +382,7 @@ export const Styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#E7d5ff'
   },
-  // checkbox: {
-  //   borderBlockColor: 'black',
-  //   width: 10,
-  //   height: 10,
-  //   borderColor: 'red'
-  // },
+
   body: {
     flex: 0,
     justifyContent: 'center',
@@ -374,9 +402,83 @@ export const Styles = StyleSheet.create({
   heading: {
     color: '#313131',
     fontSize: 32,
-    fontStyle: 'normal',
+    margin:'auto',
     fontWeight: 'bold',
-    lineHeight: 'normal'
+  },
+  headingStyle: {
+    fontSize: "15px",
+    fontWeight: "bold",
+    fontWeight: "bold",
+    marginBottom: 5,
+    marginTop: 5,
+    marginEnd: 3,
+  },
+  picker: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    marginBottom: 10,
+    width: 350
+  },
+  saveBtn: {
+    height: 55,
+    width: '35%',
+    backgroundColor: '#E7D5FF',
+    color: '#000',
+    borderRadius: 15,
+    marginRight: 15,
+    flex: 0,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  selectProfilePictureButton: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 8,
+    padding: 5,
+    marginBottom: 10,
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginLeft: 5,
+    marginBottom: 5,
+    marginTop: 5,
+  },
+  TextArea: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    width: 350,
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+
+    height: 100,
+  },
+  add: {
+    width: 20,
+    height: 'fit-content',
+    background: "red",
+    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+    borderRadius: "50%",
+    border: "1px solid gray",
+    alignItems: "center",
+    paddingBottom: 7,
+  },
+  expandIcon: {
+    color: "orange",
+    marginTop: 2,
+  },
+  popMenuIcon: {
+    marginStart: "95%",
+  },
+  popMenuOverlay: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+    opacity: "90%",
   },
   navBar: {
     justifyContent: 'space-between',
@@ -479,7 +581,7 @@ export const Styles = StyleSheet.create({
     flex: 0,
     height: 50,
     width: 100,
-    borderRadius:15,
+    borderRadius: 15,
     backgroundColor: 'lightseagreen',
     alignItems: 'center',
     justifyContent: 'center',
@@ -569,9 +671,8 @@ export const Styles = StyleSheet.create({
     flex: 0,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     backgroundColor: '#EEE3FD',
-    marginBottom: 20,
     borderRadius: 15
   },
   //===================================================
@@ -601,18 +702,18 @@ export const Styles = StyleSheet.create({
     flexDirection: 'row',
     borderRadius: 15
   },
-  editBtn: {
+  editBtn: (BtnColor)=>({
     padding: 15,
     width: 130,
     flexShrink: 0,
-    backgroundColor: '#ede3fa',
+    backgroundColor: BtnColor,
     justifyContent: 'space-around',
     gap: 5,
     alignItems: 'center',
     flex: 0,
     flexDirection: 'row',
     borderRadius: 15
-  },
+  }),
   detailsScrollView: {
     width: 375,
     backgroundColor: 'white',

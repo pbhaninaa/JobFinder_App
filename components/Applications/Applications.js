@@ -11,12 +11,15 @@ import { useNavigation } from '@react-navigation/native';
 
 
 export default Applications = () => {
+    
     const [selectedTab, setSelectedTab] = useState('applications'); // Initialize with 'applications'
-    const [data, setData] = useState('Applications'); // Initialize with 'data'
-    const [dataArray, setDataArray] = useState([1])
+    const [data, setData] = useState('applied'); // Initialize with 'data'
+    const [application, setApplication] = useState([1,2])
+    const [interviews, setInterviews] = useState([1,2,3,4])
+    const [company, setCompany] = useState('MLab');
+
 
     const navigation = useNavigation();
-
     const handleTabChange = (tab) => {
         setSelectedTab(tab);
     };
@@ -47,7 +50,7 @@ export default Applications = () => {
                         ]}
                         onPress={() => handleTabChange('applications')}
                     >
-                        <Text>Applications(25)</Text>
+                        <Text>Applications({application.length})</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={[
@@ -56,14 +59,14 @@ export default Applications = () => {
                         ]}
                         onPress={() => handleTabChange('interview')}
                     >
-                        <Text>Interview(5)</Text>
+                        <Text>Interview({interviews.length})</Text>
                     </TouchableOpacity>
                 </View>
                 {selectedTab === 'applications' ? (
                     <View>
                         <ScrollView style={{ top: 30 }}>
-                            {dataArray.length > 0 ? (
-                                dataArray.map((item, index) => (
+                            {application.length > 0 ? (
+                                application.map((item, index) => (
                                     <View style={Styles.posts} key={index}>
                                         <View style={Styles.flex}>
                                             <View style={Styles.iconContainerView}></View>
@@ -74,13 +77,13 @@ export default Applications = () => {
                                             </View>
                                         </View>
                                         <View style={Styles.flex}>
-                                            <Text style={Styles.salary}>Apply on 01 July 2020</Text>
+                                            <Text style={Styles.salary}> {data === undefined ? 'Not yet appilied' : 'Applied on 20/05/2021'}</Text>
                                             <View style={Styles.rates}>
-                                                <TouchableOpacity >
-                                                    <Text style={Styles.more} >
-                                                        Details
-                                                    </Text>
-                                                </TouchableOpacity>
+
+                                                <Text style={Styles.more} >
+                                                    {data === undefined ? 'Not yet appilied' : 'Applied'}
+                                                </Text>
+
                                             </View>
                                         </View>
                                     </View>
@@ -98,19 +101,11 @@ export default Applications = () => {
                 ) : (
                     <View>
                         <ScrollView style={{ top: 30 }}>
-                            {dataArray.length > 0 ? (
-                                dataArray.map((item, index) => (
-                                    <View style={Styles.posts} key={index}>
+                            {interviews.length > 0 ? (
+                                interviews.map((item, index) => (
+                                    <View style={Styles.posts} key={index}>                                   
                                         <View style={Styles.flex}>
-                                            <View style={Styles.iconContainerView}></View>
-                                            <View style={Styles.postDetails}>
-                                                <Text style={Styles.more}>Full time</Text>
-                                                <Text style={Styles.dashboardText}>Graphic Designer</Text>
-                                                <Text style={{ fontSize: 20, color: 'lightgrey' }}>Manth Inch. <Entypo name="dot-single" size={24} color="lightgrey" /> London </Text>
-                                            </View>
-                                        </View>
-                                        <View style={Styles.flex}>
-                                            <Text style={Styles.salary}>Apply on 01 July 2020</Text>
+                                            <Text style={Styles.salary}>Interviewed with {company+index}</Text>
                                             <View style={Styles.rates}>
                                                 <TouchableOpacity >
                                                     <Text style={Styles.more} >

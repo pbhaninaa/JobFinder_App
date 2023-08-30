@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native';
-import {  FontAwesome5,Ionicons, AntDesign } from '@expo/vector-icons';
+import { FontAwesome5, Ionicons, AntDesign } from '@expo/vector-icons';
 import Svg, { Path, Circle } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 import { Styles } from '../../Styles'
 export default Profile = () => {
-    
-  const navigation = useNavigation();
+
+    const navigation = useNavigation();
     const [cv, setCV] = useState(null)
     const [skills, setSkills] = useState(["Java", "Angular", "React", "React Native", "View", "Github"])
     const [education, setEducation] = useState([{ varsity: 'WSU', qualification: 'IT', period: "5years" },
@@ -32,11 +32,11 @@ export default Profile = () => {
         <View style={Styles.body}>
             <View style={{ top: 30 }}>
                 <View style={Styles.headerView}>
-                <View style={Styles.flex}>
+                    <View style={Styles.flex}>
                         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                             <Ionicons name="chevron-back" size={24} color="black" />
                         </TouchableOpacity>
-                        <Text style={Styles.dashboardText}>Applocations</Text>
+                        <Text style={Styles.dashboardText}>Profile</Text>
                     </View>
                     <TouchableOpacity style={Styles.center}>
                         <Svg xmlns="http://www.w3.org/2000/svg" width="5" height="23" viewBox="0 0 5 23" fill="none">
@@ -56,7 +56,7 @@ export default Profile = () => {
                     </View>
                 </View>
                 <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                    <TouchableOpacity onPress={edit} style={Styles.editBtn}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Create')} style={Styles.editBtn("#ede3fa")}>
                         <Text style={Styles.btnText}>Edit</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={upload} style={Styles.UploadCVBtn}>
@@ -67,11 +67,12 @@ export default Profile = () => {
 
                 <ScrollView style={Styles.detailsScrollView}>
                     <View>
-                        <View style={{ flex: 0, paddingBottom: 15, justifyContent: 'space-between', flexDirection: 'row', }}>
+                        <View style={Styles.flexingWithIcon}>
                             <Text style={Styles.dashboardText}>About Me</Text>
-                            <TouchableOpacity onPress={() => setShowMyInfor(prevShowSkills => !prevShowSkills)}>
-
-                                {showMyInfor ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
+                            <TouchableOpacity  style={Styles.add} onPress={() => setShowMyInfor(prevShowSkills => !prevShowSkills)}>
+                                <Text>
+                                    {showMyInfor ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
+                                </Text>
 
                             </TouchableOpacity>
                         </View>
@@ -83,11 +84,12 @@ export default Profile = () => {
 
                     </View>
                     <View>
-                        <View style={{ flex: 0, paddingBottom: 15, justifyContent: 'space-between', flexDirection: 'row', marginTop: 15 }}>
+                        <View style={Styles.flexingWithIcon}>
                             <Text style={Styles.dashboardText}>Education</Text>
-                            <TouchableOpacity onPress={() => setShowEducation(prevShowEducation => !prevShowEducation)}>
-                                {showEducation ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
-
+                            <TouchableOpacity  style={Styles.add} onPress={() => setShowEducation(prevShowEducation => !prevShowEducation)}>
+                                <Text>
+                                    {showEducation ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
+                                </Text>
                             </TouchableOpacity>
                         </View>
                         {showEducation && (
@@ -134,11 +136,12 @@ export default Profile = () => {
                     </View>
 
                     <View>
-                        <View style={{ flex: 0, paddingBottom: 15, justifyContent: 'space-between', flexDirection: 'row', marginTop: 15 }}>
+                        <View style={Styles.flexingWithIcon}>
                             <Text style={Styles.dashboardText}>Skills</Text>
-                            <TouchableOpacity onPress={() => setShowSkills(prevShowSkills => !prevShowSkills)}>
-                                {showSkills ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
-
+                            <TouchableOpacity style={Styles.add} onPress={() => setShowSkills(prevShowSkills => !prevShowSkills)}>
+                                <Text>
+                                    {showSkills ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
+                                </Text>
                             </TouchableOpacity>
                         </View>
                         {showSkills && (
@@ -160,11 +163,12 @@ export default Profile = () => {
                             />)}
                     </View>
                     <View>
-                        <View style={{ flex: 0, paddingBottom: 15, justifyContent: 'space-between', flexDirection: 'row', marginTop: 15 }}>
+                        <View style={Styles.flexingWithIcon}>
                             <Text style={Styles.dashboardText}>Experience</Text>
-                            <TouchableOpacity onPress={() => setShowExperience(prevShowEducation => !prevShowEducation)}>
-                                {showExperience ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
-
+                            <TouchableOpacity  style={Styles.add} onPress={() => setShowExperience(prevShowEducation => !prevShowEducation)}>
+                                <Text>
+                                    {showExperience ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
+                                </Text>
                             </TouchableOpacity>
                         </View>
                         {showExperience && (

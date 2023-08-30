@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, Image } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { Styles } from '../../Styles'
@@ -9,6 +9,8 @@ import useFetch from '../useFetch'
 
 export default DashBoard = () => {
     const navigation = useNavigation();
+    const [application, setApplication] = useState([1,2,3,4,5,6]);
+    const [interviews, setInterviews] = useState([1,2,3,4])
     const { data, isLoading, error } = useFetch("search", {
         query: "developer",
         num_pages: "5",
@@ -37,7 +39,7 @@ export default DashBoard = () => {
                 </View>
                 <View style={Styles.progressContainer}>
 
-                    <TouchableOpacity style={Styles.icon}>
+                    <TouchableOpacity style={Styles.icon}  onPress={() => navigation.navigate('Create')}>
                         <AntDesign name="right" size={15} color="gray" fillOpacity='0.7' />
                     </TouchableOpacity>
                     <Svg width="100" height="90" viewBox="0 0 87 97" fill="none">
@@ -53,7 +55,7 @@ export default DashBoard = () => {
             <View style={Styles.headerView}>
                 <View style={Styles.blueCard}>
                     <Text style={Styles.Cardnumber}>
-                        36
+                        {application.length}
                     </Text>
                     <Text style={Styles.Cardtexts}>
                         Jobs Applied
@@ -61,7 +63,7 @@ export default DashBoard = () => {
                 </View>
                 <View style={Styles.pinkCard}>
                     <Text style={Styles.Cardnumber}>
-                        5
+                       {interviews.length}
                     </Text>
                     <Text style={Styles.Cardtexts}>
                         Interviews
