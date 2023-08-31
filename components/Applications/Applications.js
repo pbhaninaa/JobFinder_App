@@ -1,21 +1,13 @@
 import React, { useState} from 'react';
-import { View, Text, TouchableOpacity, ScrollView,Image,Span} from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView,Image} from 'react-native';
 import { Styles } from '../../Styles'
-import { Entypo,Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import MySvg from '../Commons/MySvg';
 import Svg, { Circle } from 'react-native-svg';
-
 import { useNavigation } from '@react-navigation/native';
-
-
-
 export default Applications =  ({ route }) => {
     const { userData } = route.params;
     const [selectedTab, setSelectedTab] = useState('applications'); // Initialize with 'applications'
-    const [data, setData] = useState('applied'); // Initialize with 'data'
-    const [application, setApplication] = useState([1,2])
-    const [interviews, setInterviews] = useState([1,2,3,4])
-    const [company, setCompany] = useState('MLab');
 
 
     const navigation = useNavigation();

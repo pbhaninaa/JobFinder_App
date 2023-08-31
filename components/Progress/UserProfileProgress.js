@@ -6,7 +6,6 @@ const UserProfileProgress = ({ props }) => {
     const [completionPercentage, setCompletionPercentage] = useState(0);
 
     const spinValue = new Animated.Value(0);
-    //const [userProfile, setUserProfile] = useState({})
     const [userProfile, setLoggedUser] = useState({
         "name": "Philasande",
         "surname": "Bhani",
@@ -116,7 +115,6 @@ const UserProfileProgress = ({ props }) => {
         ]
     })
     useEffect(() => {
-       // setUserProfile(props)
         const totalSections = 5;
         let completedSections = 0;
 
@@ -162,7 +160,7 @@ const UserProfileProgress = ({ props }) => {
     return (
         <View style={styles.progressContainer}>
             <Animated.View style={[styles.progressBar, { transform: [{ rotate: spin }] }]}>
-                <Text style={styles.progressText}>{completionPercentage.toFixed()}%</Text>
+                <Text style={styles.progressText}>{completionPercentage < 100 ? completionPercentage.toFixed()+"%":"Completed"}</Text>
             </Animated.View>
         </View>
     );

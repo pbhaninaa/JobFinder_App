@@ -14,10 +14,10 @@ export const Styles = StyleSheet.create({
     flexShrink: 0,
     marginBottom: 80,
   },
-profilePic:{ flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: 85, height: 85, backgroundColor: '#7939CB', borderRadius: 20, },
+  profilePic: { flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: 85, height: 85, backgroundColor: '#7939CB', borderRadius: 20, },
   LoginWithMedia: {
     flex: 0,
-    justifyContent: 'center', 
+    justifyContent: 'center',
     height: 90,
     width: 150,
     borderRadius: 10,
@@ -61,7 +61,7 @@ profilePic:{ flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems
     flexDirection: 'row',
     alignItems: 'center',
     width: 350,
-    padding:12,
+    padding: 12,
     height: 60,
     flexShrink: 0,
     borderRadius: 15,
@@ -168,14 +168,14 @@ profilePic:{ flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems
     fontSize: 28,
     width: 300
   },
-  flexingWithIcon:{
+  flexingWithIcon: {
     flex: 0,
     justifyContent: 'space-between',
     flexDirection: 'row',
     margin: 10,
     width: 320
   },
-  TextInput:(bgColor,InputWith)=>( {
+  TextInput: (bgColor, InputWith) => ({
     paddingLeft: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -342,7 +342,7 @@ profilePic:{ flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems
     color: 'white',
     borderRadius: 16
   },
-  applyBtn:(btnWith)=>( {
+  applyBtn: (btnWith) => ({
     flex: 0,
     flexDirection: 'row',
     alignItems: 'center',
@@ -407,7 +407,7 @@ profilePic:{ flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems
   heading: {
     color: '#313131',
     fontSize: 32,
-    margin:'auto',
+    margin: 'auto',
     fontWeight: 'bold',
   },
   headingStyle: {
@@ -616,7 +616,7 @@ profilePic:{ flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems
     width: 100,
     justifyContent: 'center',
     alignItems: 'center',
-  
+
   },
   // progressBar: {
   //   // height: 80,
@@ -698,6 +698,13 @@ profilePic:{ flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems
     animationTimingFunction: 'linear',
     animationIterationCount: 'infinite',
   },
+  centerView: {
+    width: 350,
+    height: 350,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignText: 'center'
+  },
   UploadCVBtn: {
     padding: 15,
     flexShrink: 0,
@@ -709,7 +716,7 @@ profilePic:{ flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems
     flexDirection: 'row',
     borderRadius: 15
   },
-  editBtn: (BtnColor)=>({
+  editBtn: (BtnColor) => ({
     padding: 15,
     width: 130,
     flexShrink: 0,

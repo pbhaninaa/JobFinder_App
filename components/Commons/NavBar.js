@@ -6,7 +6,8 @@ import { Styles } from '../../Styles';
 
 export default function NavBar() {
   const navigation = useNavigation();
-  const [loggedUser, setLoggedUser] = useState({
+  const [loggedUser] = useState(
+    {
     "name": "Philasande",
     "surname": "Bhani",
     "email": "pbhanina@gmail.com",
@@ -112,7 +113,8 @@ export default function NavBar() {
         "response_time":"10:00"
       }
     ]
-  })
+  }
+  )
 
   return (
     <View style={Styles.navBar}>
