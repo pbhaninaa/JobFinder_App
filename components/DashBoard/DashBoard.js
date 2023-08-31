@@ -6,9 +6,10 @@ import NavBar from '../Commons/NavBar';
 import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import useFetch from '../useFetch'
+import UserProfileProgress from '../Progress/UserProfileProgress';
 
-export default DashBoard = ({route}) => {
-    
+export default DashBoard = ({ route }) => {
+
     const navigation = useNavigation();
     const [isLoading, setIsLoading] = useState(false)
     // const { data, isLoading, error } = useFetch("search", {
@@ -203,17 +204,15 @@ export default DashBoard = ({route}) => {
                                     " Miss" + loggedUser.surname : " Mrss" + loggedUser.surname}</Text>
                     <Text style={Styles.dashboardText}>DashBoard</Text>
                 </View>
-                <Image 
-            
-                source={{ uri:loggedUser.image == null ? 'https://www.fintechfutures.com/files/2019/07/synechron.png' : loggedUser.image }}
-                resizeMode='contain'
-                style={Styles.iconContainerView}/>
+                <Image
+
+                    source={{ uri: loggedUser.image == null ? 'https://www.fintechfutures.com/files/2019/07/synechron.png' : loggedUser.image }}
+                    resizeMode='contain'
+                    style={Styles.iconContainerView} />
             </View>
             <View style={Styles.cardContainer}>
                 <View style={Styles.progressContainer}>
-                    <View style={Styles.progressBar}>
-                        <Text style={Styles.progressText}>60%</Text>
-                    </View>
+                    <UserProfileProgress />
                 </View>
                 <View style={Styles.progressContainer}>
                     <Text style={Styles.btnText}>Complete your profile</Text>

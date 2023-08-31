@@ -616,6 +616,7 @@ profilePic:{ flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems
     width: 100,
     justifyContent: 'center',
     alignItems: 'center',
+  
   },
   // progressBar: {
   //   // height: 80,
