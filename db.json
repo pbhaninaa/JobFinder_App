@@ -1,0 +1,64 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "jobs": [
+    {
+      "post_id": 1,
+      "title": "Software Engineer",
+      "employment_type": "Full Time",
+      "company": "TechCo",
+      "company_picture": "https://www.fintechfutures.com/files/2019/07/synechron.png",
+      "location": "San Francisco, CA",
+      "country": "South Africa",      
+      "latitude": 37.7749,
+      "longitude": -122.4194,
+      "description": "We are looking for a skilled software engineer to join our development team...",
+      "requirements": "Bachelor's degree in Computer Science, proficiency in Java and JavaScript...",
+      "salary": "$100,000 - $120,000",
+      "posted_at": "2023-08-15T10:00:00Z",
+      "expires_at": "2023-09-15T10:00:00Z",
+      "apply_link": "https://example.com/apply/software-engineer"
+    },
+    {
+      "post_id": 2,
+      "title": "Marketing Specialist",
+      "employment_type": "Full Time",
+      "company": "GrowthMarketing",
+      "company_picture": "https://www.fintechfutures.com/files/2019/07/synechron.png",
+      "location": "New York, NY",
+      "country": "South Africa",  
+      "latitude": 40.7128,
+      "longitude": -74.0060,
+      "description": "Join our marketing team to create and execute campaigns that drive customer growth...",
+      "requirements": "Bachelor's degree in Marketing, experience with social media advertising...",
+      "salary": "$60,000 - $80,000",
+      "posted_at": "2023-08-20T09:30:00Z",
+      "expires_at": "2023-09-20T09:30:00Z",
+      "apply_link": "https://example.com/apply/marketing-specialist"
+    }
+  ],
+  "users": [
+    {
+      "user_id": 1,
+      "full_name": "Philasande Bhani",
+      "password": "Philas@12",
+      "password_confirmation": "Philas@12",
+      "email": "pbhanina@gmail.com"
+    }
+  ]
+}

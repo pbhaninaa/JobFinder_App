@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native'
 import Svg, { Path, Defs, LinearGradient, Stop } from 'react-native-svg';
-import NavBar from './NavBar';
 
 const MySvg = (props) => {
   return (
@@ -26,15 +25,12 @@ const MySvg = (props) => {
         fontWeight: 600,
         marginTop: 30,
       }}>
-        No Schedule{props.data}
+        No {props.data}
       </Text>
       <Text >
-        The kebab menu,
-        also known as the three dots menu,
-        and the three vertical dots menu,
-        is an icon used to open a menu with additional options.
+        {props.data === "Interviews" ? "No interviews taken lets keep on trying we will find something!" : "You have never applied please start applying!"}
       </Text>
-    
+
     </View>
   );
 };

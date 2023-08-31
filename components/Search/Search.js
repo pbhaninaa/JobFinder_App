@@ -6,26 +6,41 @@ import { useNavigation } from '@react-navigation/native';
 import Svg, { Path, G, Defs, Rect, ClipPath } from 'react-native-svg';
 import useFetch from '../useFetch'
 
-export default Search = () => {
+export default Search = ({ route }) => {
+    const { data } = route.params;
     const navigation = useNavigation();
     const [itemToSearch, setSearch] = useState('developer');
-    const [testing, setTesting] = useState ('')
+    const [testing, setTesting] = useState('')
 
-    const { data, isLoading, Error } = useFetch("search", {
-        query: itemToSearch,
-        num_pages: "1",
-    });
-    const Searching = () => {
-        alert(testing)
-        setSearch(testing)
-        alert(itemToSearch+"good")
-        setTesting('')
-    }
+    // const { data, isLoading, Error } = useFetch("search", {
+    //     query: itemToSearch,
+    //     num_pages: "1",
+    // });
+    const [isLoading, setLoading] = useState(false)
+
+    // const Searching = () => {
+    //     alert(testing)
+    //     setSearch(testing)
+    //     alert(itemToSearch + "good")
+    //     setTesting('')
+    // }
+
     const JobTittleSubString = (Job_Name) => {
         const name = Job_Name.substr(0, 18);
         return Job_Name.length > 18 ? name + '...' : name;
     };
-
+    const search = (searchTerm) => {
+        if (searchTerm.length > 0) {
+            const filteredData = data.filter(item =>
+                item.job_title.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            setData(filteredData);
+        }
+    };
+    const newest = () => {
+        const sortedData = [...data].sort((a, b) => new Date(a.posted_at) - new Date(b.posted_at));
+        setData(sortedData);
+    };
     return (
         <View style={Styles.body}>
             <View style={Styles.topSearch}>
@@ -57,9 +72,9 @@ export default Search = () => {
                 <TextInput
                     placeholder="Search here..."
                     placeholderTextColor="grey"
-                    style={Styles.TextInput}
+                    style={Styles.TextInput('white', 250)}
                     onChangeText={(text) => setTesting(text)} />
-                <TouchableOpacity onPress={Searching}>
+                <TouchableOpacity onPress={() => { search(testing) }}>
                     <Ionicons name="search-outline" size={24} color="grey" />
                 </TouchableOpacity>
 
@@ -78,7 +93,7 @@ export default Search = () => {
 
             <View style={Styles.headerView}>
                 <Text style={Styles.dashboardText}>{data.length} Jobs Found</Text>
-                <TouchableOpacity style={Styles.center}>
+                <TouchableOpacity style={Styles.center} onPress={newest}>
                     <Text style={Styles.more}>Newest</Text>
                 </TouchableOpacity>
             </View>
@@ -106,13 +121,7 @@ export default Search = () => {
                                         <Text style={{ fontSize: 20, color: 'lightgrey' }}>Languege: {job?.job_posting_language}</Text>
                                     </View>
                                 </View>
-                                <View style={Styles.flex}>
-                                    <Text style={Styles.salary}>{job.job_min_salary === null ? "Salary not disclosed" : job.job_min_salary}</Text>
-                                    <View style={Styles.rate}>
-                                        <FontAwesome name="star" size={18} color="#FF8A00" />
-                                        <Text style={{ color: '#FF8A00' }}>4.3</Text>
-                                    </View>
-                                </View>
+
                             </TouchableOpacity>
                         ))
                     ) : (

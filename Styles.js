@@ -14,7 +14,7 @@ export const Styles = StyleSheet.create({
     flexShrink: 0,
     marginBottom: 80,
   },
-
+profilePic:{ flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: 85, height: 85, backgroundColor: '#7939CB', borderRadius: 20, },
   LoginWithMedia: {
     flex: 0,
     justifyContent: 'center', 
@@ -150,6 +150,12 @@ export const Styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: 'bold',
   },
+  btnT: {
+    color: '#7939CB',
+    fontSize: 18,
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+  },
   menuIcon: {
     flex: 1,
     justifyContent: 'center',
@@ -164,11 +170,10 @@ export const Styles = StyleSheet.create({
   },
   flexingWithIcon:{
     flex: 0,
-    paddingBottom: 15,
     justifyContent: 'space-between',
     flexDirection: 'row',
-    marginTop: 10,
-    width: 350
+    margin: 10,
+    width: 320
   },
   TextInput:(bgColor,InputWith)=>( {
     paddingLeft: 10,
@@ -528,7 +533,8 @@ export const Styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 5,
     justifyContent: 'space-between',
-    marginBottom: 25,
+    marginBottom: 5,
+    marginTop: 15,
   },
   helloText: {
     fontSize: 18,

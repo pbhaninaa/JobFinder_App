@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { Styles } from '../../Styles'
-
-import {Ionicons } from '@expo/vector-icons';
-import Svg, {  Circle } from 'react-native-svg';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import Svg, { Circle } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
+import MySvg from '../Commons/MySvg';
 
 
 
-export default Applications = ({route}) => {
-    
-    const { jobDatas } = route.params;
-  const navigation = useNavigation();
+export default Applications = ({ route }) => {
+
+    const { data } = route.params;
+    const navigation = useNavigation();
     const [selectedTab, setSelectedTab] = useState('applications');
+    const [hours, setHours] = useState('');
     const JobTittleSubString = (Job_Name) => {
         const name = Job_Name.substr(0, 18);
         return Job_Name.length > 18 ? name + '...' : name
     };
-    const handleTabChange = (tab) => {
-        setSelectedTab(tab);
-    };
+   
+    useEffect(() => {
+        setHours(new Date().getHours());
+    }, [])
     return (
         <View style={Styles.body}>
             <View style={{ top: 30 }}>
@@ -38,24 +40,35 @@ export default Applications = ({route}) => {
                         </Svg>
                     </TouchableOpacity>
                 </View>
-                <ScrollView >
-                    <View style={Styles.posts}>
-                        <View style={Styles.flex}>
-                            <View style={Styles.iconContainerView}><Ionicons name="notifications" size={35} color="aliceblue" /></View>
-                            <View style={Styles.postDetails}>
-                            <Text style={Styles.more}>{jobData.job_employment_type}</Text>
-                            <Text style={Styles.dashboardText}>{JobTittleSubString(jobData.job_title)}</Text>
-                            <Text style={{ fontSize: 20, color: 'lightgrey' }}>{jobData?.job_city}.{jobData?.job_state}.{jobData?.job_country}</Text>
+                <ScrollView style={{ top: 30 }}>
+                    {data.notifications.length > 0 ? (
+                        data.notifications.map((item, index) => (
+                            <View style={Styles.posts} key={index}>
+                                <View style={Styles.flex}>
+                                    <View style={Styles.iconContainerView}>
+                                        {item.id == 1 ? <MaterialIcons name="notifications-active" size={35} color="white" /> : <Ionicons name="notifications" size={35} color="aliceblue" />}
 
+                                    </View>
+                                    <View style={Styles.postDetails}>
+                                        <Text style={Styles.more}>Sender : {item.notification_sender}</Text>
+                                        <Text style={Styles.dashboardText}>{JobTittleSubString(item.notification_title)}</Text>
+                                    </View>
+                                </View>
+                                <View style={Styles.flex}>
+                                    <Text style={{ fontSize: 20, color: 'lightgrey' }}>{item.notification_body}</Text>
+                                </View>
+                                <View style={Styles.flex}>
+                                    <Text style={Styles.salary}>Recieved at {item.response_time}</Text>
+                                    <View style={Styles.rates}></View>
+                                </View>
+                            </View>
+                        ))
+                    ) : (
+
+                        <View style={Styles.nothingToShow}>
+                            <MySvg data={"Notifications"} />
                         </View>
-                        </View>
-                        <Text style={{ fontSize: 20, color: 'grey' }}>
-                            The kebab menu, also known as the three dots menu.
-                        </Text>
-                        <Text style={{ fontSize: 20, color: 'grey', marginTop: 5 }}>
-                            5h ago
-                        </Text>
-                    </View>
+                    )}
                 </ScrollView>
             </View>
             {/* <NavBar /> */}

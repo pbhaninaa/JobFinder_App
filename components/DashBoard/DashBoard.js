@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, Image } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { Styles } from '../../Styles'
@@ -7,14 +7,185 @@ import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import useFetch from '../useFetch'
 
-export default DashBoard = () => {
+export default DashBoard = ({route}) => {
+    
     const navigation = useNavigation();
-    const [application, setApplication] = useState([1,2,3,4,5,6]);
-    const [interviews, setInterviews] = useState([1,2,3,4])
-    const { data, isLoading, error } = useFetch("search", {
-        query: "developer",
-        num_pages: "5",
-    });
+    const [isLoading, setIsLoading] = useState(false)
+    // const { data, isLoading, error } = useFetch("search", {
+    //     query: "developer",
+    //     num_pages: "5",
+    // });
+    const [loggedUser, setLoggedUser] = useState({
+        "name": "Philasande",
+        "surname": "Bhani",
+        "merital_status": "single",
+        "email": "pbhanina@gmail.com",
+        "phone": "0782141216",
+        "homeAddress": "123, Main Street. Suite",
+        "gender": "male",
+        "profession": "Software Engineer",
+        "summary": "I did Computer application Technology in High school. That's when I obtained Microsoft Office (Spreadsheet, Word, Access, Presentation, One Note etc.) Skills. Then I did Diploma in Information and Communication Technology (ICT), I also participated in a Learnership in Codetribe at MLab in Northern cape at Kimberly and that’s where I have obtained skills in website design and website development using HTML, JavaScript, React and React Native.",
+        "image": "https://media.licdn.com/dms/image/D4D03AQFTStwijtd3cQ/profile-displayphoto-shrink_800_800/0/1667561618300?e=2147483647&v=beta&t=cpHaD4zh9UkvFdcAQ375wOq9L4myHvwTCAWWCq9LUSc",
+        "skills": ["Javascript", "Java", "Html and CSS", "AngularJS", "ReactJS", "ReactNative", "VueJS"],
+        "experience": [
+            {
+                "id": 1,
+                "company": "MLab Codetribe",
+                "position": "Intern",
+                "period": "2021-jan 2021-Dec"
+            },
+            {
+                "id": 2,
+                "company": "Geeks$Learning",
+                "position": "Intern",
+                "period": "2022-jan 2022-Dec"
+            },
+            {
+                "id": 3,
+                "company": "Reverside",
+                "position": "Junior Developer",
+                "period": "2023-jan 2023-June"
+            }
+        ],
+        "education": [
+            {
+                "id": 1,
+                "university": "Walter sisulu University",
+                "qualification": "NDip Information Technology",
+                "period": "2027-jan 2020-Dec"
+            },
+            {
+                "id": 2,
+                "university": "Geeks4learning",
+                "qualification": "NQF 5 Java full Stack Developer",
+                "period": "2027-jan 2020-Dec"
+            }
+        ],
+        "applications": [
+            {
+                "job_id": 1,
+                "job_title": "Software Engineer",
+                "job_employment_type": "Full Time",
+                "company": "TechCo",
+                "employer_logo": "https://www.fintechfutures.com/files/2019/07/synechron.png",
+                "job_city": "San Francisco",
+                "job_country": "United States",
+                "job_state": "CA",
+                "job_posting_language": "Portugees",
+                "job_latitude": 37.7749,
+                "job_longitude": -122.4194,
+                "job_description": "We are looking for a skilled software engineer to join our development team...",
+                "job_requirements": "Bachelor's degree in Computer Science, proficiency in Java and JavaScript...",
+                "job_min_salary": "$100,000 - $120,000",
+                "posted_at": "2023-08-15",
+                "expires_at": "2023-09-15",
+                "appllied_at": "2023-08-15",
+                "apply_link": "https://example.com/apply/software-engineer",
+                "company_rate": 5
+            }
+
+        ],
+        "interviews": [
+            {
+                "id": 1,
+                "company_name": "DashPay",
+                "employer_logo": "https://www.fintechfutures.com/files/2019/07/synechron.png",
+                "interview_date": "20/02/2020"
+            },
+            {
+                "id": 2,
+                "company_name": "Reverside",
+                "employer_logo": "https://www.fintechfutures.com/files/2019/07/synechron.png",
+                "interview_date": "20/02/2020"
+            },
+            {
+                "id": 3,
+                "company_name": "African Resonance",
+                "employer_logo": "https://www.fintechfutures.com/files/2019/07/synechron.png",
+                "interview_date": "20/02/2020"
+            }
+
+        ],
+        "notifications": [
+            {
+                "id": 1,
+                "notification_sender": "Reversider",
+                "notification_title": "Congratulations",
+                "notification_body": "You have been selected to be one of our software developers.",
+                "response_time": "10:00"
+            },
+            {
+                "id": 2,
+                "notification_sender": "Fly High",
+                "notification_title": "Sorry you are not seclected",
+                "notification_body": "After carefully consideration we decided not to go further with your application!",
+                "response_time": "10:00"
+            }
+        ]
+    })
+    const [data, setData] = useState([
+        {
+            "job_id": 3,
+            "job_title": "Software Engineer",
+            "job_employment_type": "Full Time",
+            "company": "TechCo",
+            "employer_logo": "https://www.fintechfutures.com/files/2019/07/synechron.png",
+            "job_city": "San Francisco",
+            "job_country": "United States",
+            "job_state": "CA",
+            "job_posting_language": "Portugees",
+            "job_latitude": 37.7749,
+            "job_longitude": -122.4194,
+            "job_description": "We are looking for a skilled software engineer to join our development team...",
+            "job_requirements": "Bachelor's degree in Computer Science, proficiency in Java and JavaScript...",
+            "job_min_salary": "$100,000 - $120,000",
+            "posted_at": "2023-08-15T10:00:00Z",
+            "expires_at": "2023-09-15T10:00:00Z",
+            "apply_link": "https://example.com/apply/software-engineer",
+            "company_rate": 5
+        }, {
+
+
+            "job_id": 2,
+            "job_title": "Marketing Specialist",
+            "job_employment_type": "Full Time",
+            "company": "GrowthMarketing",
+            "employer_logo": "https://www.fintechfutures.com/files/2019/07/synechron.png",
+            "job_city": "London",
+            "job_country": "United States",
+            "job_state": "USA",
+            "job_posting_language": "English",
+            "job_latitude": 40.7128,
+            "job_longitude": -74.0060,
+            "job_description": "Join our marketing team to create and execute campaigns that drive customer growth...",
+            "job_requirements": "Bachelor's degree in Marketing, experience with social media advertising...",
+            "job_min_salary": "$60,000 - $80,000",
+            "posted_at": "2023-08-20T09:30:00Z",
+            "expires_at": "2023-09-20T09:30:00Z",
+            "apply_link": "https://example.com/apply/marketing-specialist",
+            "company_rate": 3
+        },
+        {
+            "job_id": 1,
+            "job_title": "Software Engineer",
+            "job_employment_type": "Full Time",
+            "company": "TechCo",
+            "employer_logo": "https://www.fintechfutures.com/files/2019/07/synechron.png",
+            "job_city": "San Francisco",
+            "job_country": "United States",
+            "job_state": "CA",
+            "job_posting_language": "Portugees",
+            "job_latitude": 37.7749,
+            "job_longitude": -122.4194,
+            "job_description": "We are looking for a skilled software engineer to join our development team...",
+            "job_requirements": "Bachelor's degree in Computer Science, proficiency in Java and JavaScript...",
+            "job_min_salary": "$100,000 - $120,000",
+            "posted_at": "2023-08-15T10:00:00Z",
+            "expires_at": "2023-09-15T10:00:00Z",
+            "apply_link": "https://example.com/apply/software-engineer",
+            "company_rate": 5
+        }
+    ])
     const JobTittleSubString = (Job_Name) => {
         const name = Job_Name.substr(0, 18);
         return Job_Name.length > 18 ? name + '...' : name
@@ -23,10 +194,20 @@ export default DashBoard = () => {
         <View style={Styles.body}>
             <View style={Styles.headerView}>
                 <View style={{ gap: 15 }}>
-                    <Text style={Styles.helloText}>Hello, Mr Bhani</Text>
+                    <Text style={Styles.helloText}>Hello,
+                        {
+                            loggedUser.gender.toLowerCase() === "male" ?
+                                " Mr" + loggedUser.surname :
+                                loggedUser.gender.toLowerCase() === "female" &&
+                                    loggedUser.merital_status.toLowerCase() === "single" ?
+                                    " Miss" + loggedUser.surname : " Mrss" + loggedUser.surname}</Text>
                     <Text style={Styles.dashboardText}>DashBoard</Text>
                 </View>
-                <View style={Styles.iconContainerView}></View>
+                <Image 
+            
+                source={{ uri:loggedUser.image == null ? 'https://www.fintechfutures.com/files/2019/07/synechron.png' : loggedUser.image }}
+                resizeMode='contain'
+                style={Styles.iconContainerView}/>
             </View>
             <View style={Styles.cardContainer}>
                 <View style={Styles.progressContainer}>
@@ -39,7 +220,7 @@ export default DashBoard = () => {
                 </View>
                 <View style={Styles.progressContainer}>
 
-                    <TouchableOpacity style={Styles.icon}  onPress={() => navigation.navigate('Create')}>
+                    <TouchableOpacity style={Styles.icon} onPress={() => navigation.navigate('Create')}>
                         <AntDesign name="right" size={15} color="gray" fillOpacity='0.7' />
                     </TouchableOpacity>
                     <Svg width="100" height="90" viewBox="0 0 87 97" fill="none">
@@ -55,7 +236,7 @@ export default DashBoard = () => {
             <View style={Styles.headerView}>
                 <View style={Styles.blueCard}>
                     <Text style={Styles.Cardnumber}>
-                        {application.length}
+                        {loggedUser.applications.length}
                     </Text>
                     <Text style={Styles.Cardtexts}>
                         Jobs Applied
@@ -63,7 +244,7 @@ export default DashBoard = () => {
                 </View>
                 <View style={Styles.pinkCard}>
                     <Text style={Styles.Cardnumber}>
-                       {interviews.length}
+                        {loggedUser.interviews.length}
                     </Text>
                     <Text style={Styles.Cardtexts}>
                         Interviews
@@ -72,7 +253,7 @@ export default DashBoard = () => {
             </View>
             <View style={Styles.headerView}>
                 <Text style={Styles.dashboardText}>Recomended for you</Text>
-                <TouchableOpacity style={Styles.center} onPress={() => navigation.navigate('Search')}>
+                <TouchableOpacity style={Styles.center} onPress={() => navigation.navigate('Search', { data: data })}>
                     <Text style={Styles.more}>More</Text>
                 </TouchableOpacity>
             </View>
@@ -104,7 +285,7 @@ export default DashBoard = () => {
                                     <Text style={Styles.salary}>{job.job_min_salary === null ? "Salary not disclosed" : job.job_min_salary}</Text>
                                     <View style={Styles.rate}>
                                         <FontAwesome name="star" size={18} color="#FF8A00" />
-                                        <Text style={{ color: '#FF8A00' }}>4.3</Text>
+                                        <Text style={{ color: '#FF8A00' }}>{job.company_rate}</Text>
                                     </View>
                                 </View>
                             </TouchableOpacity>

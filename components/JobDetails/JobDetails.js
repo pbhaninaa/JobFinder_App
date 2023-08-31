@@ -82,7 +82,7 @@ export default JobDetails = ({ route }) => {
                         <Text style={Styles.salary}>{jobData.job_min_salary === null ? "Salary not disclosed" : jobData.job_min_salary}</Text>
                         <View style={Styles.rate}>
                             <FontAwesome name="star" size={18} color="#FF8A00" />
-                            <Text style={{ color: '#FF8A00' }}>4.3</Text>
+                            <Text style={{ color: '#FF8A00' }}>{jobData.company_rate}</Text>
                         </View>
                     </View>
                 </View>
@@ -96,23 +96,14 @@ export default JobDetails = ({ route }) => {
                         <TouchableOpacity onPress={() => { setShow('location') }} style={Styles.UploadCVBtn}>
                             <Text style={Styles.btnText}>Location</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => { setShow('gallery') }} style={Styles.editBtn} >
-                            <Text style={Styles.btnText}>Gallary</Text>
+                        <TouchableOpacity onPress={() => { setShow('requiremets') }} style={Styles.editBtn("#ede3fa")} >
+                            <Text style={Styles.btnText}>Requiremets</Text>
                         </TouchableOpacity>
                     </View>
-                    {show === 'gallery' ? (
+                    {show === 'requiremets' ? (
                         <View style={Styles.center}>
-                            <Image
-                                source={{ uri: jobData.employer_logo == null ? 'https://www.fintechfutures.com/files/2019/07/synechron.png' : jobData.employer_logo }}
-                                resizeMode='contain' job_posting_language
-                                style={{
-                                    width: 205,
-                                    height: 126,
-                                    flexShrink: 0,
-                                    marginTop: 10,
-                                }}
-                            />
-                        </View>
+                        <Text >{jobData.job_requirements}</Text>
+                    </View>
                     ) : show === 'location' ? (
                         <View style={Styles.center}>
                             <Text style={Styles.more}>{jobData.job_city}{jobData.job_state}{jobData.job_country}</Text>
@@ -175,7 +166,7 @@ export default JobDetails = ({ route }) => {
                     </Svg>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={Styles.Styles.applyBtn(350)}
+                    style={Styles.applyBtn(200)}
                     onPress={() => { Linking.openURL(jobData.job_apply_link) }}
                 >
                     <FontAwesome5 name="file-upload" size={25} color="#E7D5FF" />

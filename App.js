@@ -23,9 +23,9 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            headerShown: false,
+            headerShown: true,
           }}>
-
+           
           <Stack.Screen name="Home" component={DashBoard} />
           <Stack.Screen name="Notifications" component={Notifications} />
           <Stack.Screen name="Profile" component={Profile} />
@@ -37,7 +37,7 @@ export default function App() {
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="Search" component={Search} />
         </Stack.Navigator>
-        {/* <NavBar /> */}
+        
       </NavigationContainer>
     </SafeAreaView>
   );

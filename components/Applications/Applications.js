@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, TextInput, StyleSheet } from 'react-native';
+import React, { useState} from 'react';
+import { View, Text, TouchableOpacity, ScrollView,Image,Span} from 'react-native';
 import { Styles } from '../../Styles'
-import { Octicons, Entypo, Feather, Ionicons } from '@expo/vector-icons';
-import NavBar from '../Commons/NavBar';
+import { Entypo,Ionicons } from '@expo/vector-icons';
 import MySvg from '../Commons/MySvg';
-import Svg, { Path, Circle } from 'react-native-svg';
+import Svg, { Circle } from 'react-native-svg';
 
 import { useNavigation } from '@react-navigation/native';
 
 
 
-export default Applications = () => {
-    
+export default Applications =  ({ route }) => {
+    const { userData } = route.params;
     const [selectedTab, setSelectedTab] = useState('applications'); // Initialize with 'applications'
     const [data, setData] = useState('applied'); // Initialize with 'data'
     const [application, setApplication] = useState([1,2])
@@ -50,7 +49,7 @@ export default Applications = () => {
                         ]}
                         onPress={() => handleTabChange('applications')}
                     >
-                        <Text>Applications({application.length})</Text>
+                        <Text>Applications({userData.applications.length})</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={[
@@ -59,29 +58,32 @@ export default Applications = () => {
                         ]}
                         onPress={() => handleTabChange('interview')}
                     >
-                        <Text>Interview({interviews.length})</Text>
+                        <Text>Interview({userData.interviews.length})</Text>
                     </TouchableOpacity>
                 </View>
                 {selectedTab === 'applications' ? (
                     <View>
                         <ScrollView style={{ top: 30 }}>
-                            {application.length > 0 ? (
-                                application.map((item, index) => (
+                            {userData.applications.length > 0 ? (
+                                userData.applications.map((item, index) => (
                                     <View style={Styles.posts} key={index}>
                                         <View style={Styles.flex}>
-                                            <View style={Styles.iconContainerView}></View>
+                                            <Image 
+                                             source={{ uri: item.employer_logo == null ? 'https://www.fintechfutures.com/files/2019/07/synechron.png' : item.employer_logo }}
+                                             resizeMode='contain' job_posting_language
+                                            style={Styles.iconContainerView} />
                                             <View style={Styles.postDetails}>
-                                                <Text style={Styles.more}>Full time</Text>
-                                                <Text style={Styles.dashboardText}>Graphic Designer</Text>
-                                                <Text style={{ fontSize: 20, color: 'lightgrey' }}>Manth Inch. <Entypo name="dot-single" size={24} color="lightgrey" /> London </Text>
+                                                <Text style={Styles.more}>{item.job_employment_type}</Text>
+                                                <Text style={Styles.dashboardText}>{item.job_title}</Text>
+                                                <Text style={{ fontSize: 20, color: 'lightgrey' }}>{item.job_city},{item.job_country},{item.job_state}</Text>
                                             </View>
                                         </View>
                                         <View style={Styles.flex}>
-                                            <Text style={Styles.salary}> {data === undefined ? 'Not yet appilied' : 'Applied on 20/05/2021'}</Text>
+                                            <Text style={Styles.salary}> {item.appllied_at === undefined ? 'Not yet appilied' : item.appllied_at}</Text>
                                             <View style={Styles.rates}>
 
                                                 <Text style={Styles.more} >
-                                                    {data === undefined ? 'Not yet appilied' : 'Applied'}
+                                                    {item.appllied_at === undefined ? 'Not yet appilied' : 'Applied'}
                                                 </Text>
 
                                             </View>
@@ -91,8 +93,7 @@ export default Applications = () => {
                             ) : (
 
                                 <View style={Styles.nothingToShow}>
-                                    <MySvg />
-
+                                    <MySvg data={"Applications"}/>
                                 </View>
                             )}
                         </ScrollView>
@@ -101,23 +102,21 @@ export default Applications = () => {
                 ) : (
                     <View>
                         <ScrollView style={{ top: 30 }}>
-                            {interviews.length > 0 ? (
-                                interviews.map((item, index) => (
+                            {userData.interviews.length > 0 ? (
+                                userData.interviews.map((item, index) => (
                                     <View style={Styles.posts} key={index}>                                   
                                         <View style={Styles.flex}>
-                                            <Text style={Styles.salary}>Interviewed with {company+index}</Text>
-                                            <View style={Styles.rates}>
-                                                <TouchableOpacity >
-                                                    <Text style={Styles.more} >
-                                                        Details
-                                                    </Text>
-                                                </TouchableOpacity>
-                                            </View>
+                                        <Image 
+                                             source={{ uri: item.employer_logo == null ? 'https://www.fintechfutures.com/files/2019/07/synechron.png' : item.employer_logo }}
+                                             resizeMode='contain' job_posting_language
+                                            style={Styles.iconContainerView} />
+                                            <Text style={Styles.salary}><Text style={Styles.btnT}>Interviewed with</Text> {item.company_name}</Text>
+                                            
                                         </View>
                                     </View>
                                 ))
                             ) : (
-                                <MySvg />
+                                <MySvg data={"Interviews"}/>
 
                             )}
                         </ScrollView>

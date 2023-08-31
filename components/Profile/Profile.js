@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native';
-import { FontAwesome5, Ionicons, AntDesign } from '@expo/vector-icons';
+import { View, Text, TouchableOpacity, ScrollView, FlatList, Image } from 'react-native';
+import { FontAwesome5, Ionicons, AntDesign, MaterialIcons } from '@expo/vector-icons';
 import Svg, { Path, Circle } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
+// import DocumentPicker from 'react-native-document-picker';
 import { Styles } from '../../Styles'
-export default Profile = () => {
-
+export default Profile = ({ route }) => {
+    const { data } = route.params;
     const navigation = useNavigation();
     const [cv, setCV] = useState(null)
-    const [skills, setSkills] = useState(["Java", "Angular", "React", "React Native", "View", "Github"])
-    const [education, setEducation] = useState([{ varsity: 'WSU', qualification: 'IT', period: "5years" },
-    { varsity: 'WSU', qualification: 'IT', period: "5years" }
-    ]);
-    const [experience, setExperience] = useState([
-        { position: 'Junior Dev', Company: 'Reverside', period: "5 years" },
-        { position: 'Intermediate Dev', Company: 'MLab', period: "3 years" }
-    ]);
     // ================================ Show and  hide states =======================
     const [showEducation, setShowEducation] = useState(false)
     const [showSkills, setShowSkills] = useState(false)
@@ -23,10 +16,23 @@ export default Profile = () => {
     const [showExperience, setShowExperience] = useState(false)
     // ==================================Functions =================================================================
     edit = () => {
-        alert('this is edit')
+        alert('Not yet implemented but it should direct you to edit your profile ')
     }
-    upload = () => {
-        alert('this is upload')
+    upload = async () => {
+        alert('This is not yet implemented but it should direct you to upload your cv')
+        // try {
+        //     const result = await DocumentPicker.pick({
+        //       type: [DocumentPicker.types.allFiles],
+        //     });
+
+        //     setCV(result);
+        //   } catch (err) {
+        //     if (DocumentPicker.isCancel(err)) {
+        //       // User cancelled the picker
+        //     } else {
+        //       // Handle other errors
+        //     }
+        //   }
     }
     return (
         <View style={Styles.body}>
@@ -48,19 +54,20 @@ export default Profile = () => {
                 </View>
                 <View style={Styles.flex}>
                     <View style={{ gap: 15 }}>
-                        <Text style={Styles.dashboardText}>Philasande Bhani</Text>
-                        <Text style={{ fontSize: 20, color: 'grey', }}>Software Developer</Text>
+                        <Text style={Styles.dashboardText}>{data.name} {data.surname} </Text>
+                        <Text style={{ fontSize: 20, color: 'grey', }}>{data.profession}</Text>
                     </View>
-                    {/* Profile picture */}
-                    <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: 85, height: 85, backgroundColor: '#7939CB', borderRadius: 20, }}>
-                    </View>
+                    <Image
+                        source={{ uri: data.image }}
+                        style={Styles.profilePic} />
                 </View>
                 <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'space-evenly' }}>
                     <TouchableOpacity onPress={() => navigation.navigate('Create')} style={Styles.editBtn("#ede3fa")}>
                         <Text style={Styles.btnText}>Edit</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={upload} style={Styles.UploadCVBtn}>
-                        <FontAwesome5 name="file-upload" size={24} color="#7939CB" />
+                        {cv === null ? <FontAwesome5 name="file-upload" size={24} color="#7939CB" /> : <MaterialIcons name="file-download-done" size={24} color="#7939CB" />}
+
                         <Text style={Styles.btnText}>Upload CV</Text>
                     </TouchableOpacity>
                 </View>
@@ -69,7 +76,7 @@ export default Profile = () => {
                     <View>
                         <View style={Styles.flexingWithIcon}>
                             <Text style={Styles.dashboardText}>About Me</Text>
-                            <TouchableOpacity  style={Styles.add} onPress={() => setShowMyInfor(prevShowSkills => !prevShowSkills)}>
+                            <TouchableOpacity style={Styles.add} onPress={() => setShowMyInfor(prevShowSkills => !prevShowSkills)}>
                                 <Text>
                                     {showMyInfor ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
                                 </Text>
@@ -77,8 +84,8 @@ export default Profile = () => {
                             </TouchableOpacity>
                         </View>
                         {showMyInfor && (
-                            <Text style={{ marginBottom: 100 }}>
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            <Text style={{ marginBottom: 10 }}>
+                                {data.summary}
                             </Text>
                         )}
 
@@ -86,7 +93,7 @@ export default Profile = () => {
                     <View>
                         <View style={Styles.flexingWithIcon}>
                             <Text style={Styles.dashboardText}>Education</Text>
-                            <TouchableOpacity  style={Styles.add} onPress={() => setShowEducation(prevShowEducation => !prevShowEducation)}>
+                            <TouchableOpacity style={Styles.add} onPress={() => setShowEducation(prevShowEducation => !prevShowEducation)}>
                                 <Text>
                                     {showEducation ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
                                 </Text>
@@ -94,17 +101,17 @@ export default Profile = () => {
                         </View>
                         {showEducation && (
                             <FlatList
-                                style={{ marginBottom: 100 }}
+                                style={{ marginBottom: 10 }}
                                 showsVerticalScrollIndicator={false}
                                 showsHorizontalScrollIndicator={true}
-                                data={education}
+                                data={data.education}
                                 dotsx
                                 renderItem={({ item }) => (
-                                    <View style={Styles.skillStyle} key={item}>
+                                    <View style={Styles.skillStyle} key={item.id}>
                                         <View style={Styles.selectProfilePictureButton}>
                                             <View>
-                                                <Text style={Styles.dashboardText}>Varsity Name: {item.varsity}</Text>
-                                                <Text>Qualification: {item.qualification}</Text>
+                                                <Text style={Styles.btnT}>Varsity: {item.university}</Text>
+                                                <Text style={{ marginBottom: 5, marginTop: 5 }}>Qualification: {item.qualification}</Text>
                                                 <Text style={{ marginBottom: 5 }}>
                                                     Period: {item.period}
                                                 </Text>
@@ -146,13 +153,13 @@ export default Profile = () => {
                         </View>
                         {showSkills && (
                             <FlatList
-                                style={{ marginBottom: 100 }}
+                                style={{ marginBottom: 10 }}
                                 showsVerticalScrollIndicator={false}
                                 showsHorizontalScrollIndicator={true}
-                                data={skills}
+                                data={data.skills}
                                 dotsx
                                 renderItem={({ item }) => (
-                                    <View style={Styles.skillStyle} key={item}>
+                                    <View style={Styles.skillStyle} key={item.id}>
                                         <Text style={Styles.skillText}>{item}</Text>
                                     </View>
                                 )}
@@ -165,7 +172,7 @@ export default Profile = () => {
                     <View>
                         <View style={Styles.flexingWithIcon}>
                             <Text style={Styles.dashboardText}>Experience</Text>
-                            <TouchableOpacity  style={Styles.add} onPress={() => setShowExperience(prevShowEducation => !prevShowEducation)}>
+                            <TouchableOpacity style={Styles.add} onPress={() => setShowExperience(prevShowEducation => !prevShowEducation)}>
                                 <Text>
                                     {showExperience ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
                                 </Text>
@@ -176,13 +183,13 @@ export default Profile = () => {
                                 style={{ marginBottom: 200 }}
                                 showsVerticalScrollIndicator={false}
                                 showsHorizontalScrollIndicator={true}
-                                data={experience}
+                                data={data.experience}
                                 dotsx
                                 renderItem={({ item }) => (
-                                    <View style={Styles.skillStyle} key={item}>
+                                    <View style={Styles.skillStyle} key={item.id}>
                                         <View style={Styles.selectProfilePictureButton}>
                                             <View>
-                                                <Text style={Styles.dashboardText}>Company: {item.Company}</Text>
+                                                <Text style={Styles.btnT}>Company: {item.company}</Text>
                                                 <Text>Position: {item.position}</Text>
                                                 <Text style={{ marginBottom: 5 }}>
                                                     Duration: {item.period}
