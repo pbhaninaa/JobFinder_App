@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { Entypo, Feather, FontAwesome, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { Styles } from '../../Styles';
+import { Styles,theme } from '../../Styles';
 
 export default function NavBar() {
   const navigation = useNavigation();
@@ -122,22 +122,22 @@ export default function NavBar() {
         <TouchableOpacity
           style={Styles.menuIcon}
           onPress={() => navigation.navigate('Home',{loggedUser:loggedUser})}>
-          <Entypo name="home" size={24} color="#7939CB" />
+          <Entypo name="home" size={24} color={theme} />
         </TouchableOpacity>
         <TouchableOpacity
           style={Styles.menuIcon}
           onPress={() => navigation.navigate('Applications', { userData: loggedUser })}>
-          <FontAwesome name="wpforms" size={24} color="#7939CB" />
+          <FontAwesome name="wpforms" size={24} color={theme} />
         </TouchableOpacity>
         <TouchableOpacity
           style={Styles.menuIcon}
           onPress={() => navigation.navigate('Notifications',{data:loggedUser})}>
-          <Ionicons name="ios-notifications" size={24} color="#7939CB" />
+          <Ionicons name="ios-notifications" size={24} color={theme} />
         </TouchableOpacity>
         <TouchableOpacity
           style={Styles.menuIcon}
           onPress={() => navigation.navigate('Profile', { data: loggedUser })}>
-          <Feather name="user" size={24} color="#7939CB" />
+          <Feather name="user" size={24} color={theme} />
         </TouchableOpacity>
       </View>
     </View>

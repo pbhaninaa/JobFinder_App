@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native
 import {FontAwesome, Entypo, Ionicons } from '@expo/vector-icons';
 import LogoutComponent from '../Commons/LogoutComponent';
 import Svg, {Circle } from 'react-native-svg';;
-import { Styles } from '../../Styles'
+import { LoginBtn, Styles,theme } from '../../Styles'
 
 import { useNavigation } from '@react-navigation/native';
 export default CompanyDetails = () => {
@@ -97,7 +97,7 @@ export default CompanyDetails = () => {
                     <View>
                         <Text style={Styles.dashboardText}>Location</Text>
                         <View style={{flex:0,flexDirection:'row', alignItems:'center',justifyContent:'left',gap:12, marginTop:15}}>
-                            <Entypo name="location" size={34} color="#7939CB" />
+                            <Entypo name="location" size={34} color={theme} />
                             <Text >Sandton </Text>
                         </View>
 
@@ -109,7 +109,7 @@ export default CompanyDetails = () => {
                 <TouchableOpacity style={Styles. applyBtn(350)}>
                     <Text style={Styles.Cardnumber}>21</Text>
                     <Text style={Styles.applyBtnText}>Available positions</Text>
-                    <Ionicons name="arrow-forward" size={32} color="#E7d5ff" />
+                    <Ionicons name="arrow-forward" size={32} color={LoginBtn} />
                 </TouchableOpacity>
             </View>
             <View style={Styles.bottomLine}></View>

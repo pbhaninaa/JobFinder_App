@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, TextInput, Image } from 'react-native';
-import { Styles } from '../../Styles'
+import { Styles,theme } from '../../Styles'
 import { Ionicons, Entypo, Feather, FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import Svg, { Path, G, Defs, Rect, ClipPath } from 'react-native-svg';

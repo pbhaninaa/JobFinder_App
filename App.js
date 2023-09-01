@@ -35,7 +35,6 @@ export default function App() {
           <Stack.Screen name="Applications" component={Applications} />
           <Stack.Screen name="Search" component={Search} />
         </Stack.Navigator>
-
       </NavigationContainer>
     </SafeAreaView>
   );

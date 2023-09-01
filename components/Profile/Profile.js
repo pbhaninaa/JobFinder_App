@@ -5,7 +5,7 @@ import Svg, { Path, Circle } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 import LogoutComponent from '../Commons/LogoutComponent';
 // import DocumentPicker from 'react-native-document-picker';
-import { Styles } from '../../Styles'
+import { Styles,theme } from '../../Styles'
 export default Profile = ({ route }) => {
     const { data } = route.params;
     const navigation = useNavigation();
@@ -69,7 +69,7 @@ export default Profile = ({ route }) => {
                         <Text style={Styles.btnText}>Edit</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={upload} style={Styles.UploadCVBtn}>
-                        {cv === null ? <FontAwesome5 name="file-upload" size={24} color="#7939CB" /> : <MaterialIcons name="file-download-done" size={24} color="#7939CB" />}
+                        {cv === null ? <FontAwesome5 name="file-upload" size={24} color={theme} /> : <MaterialIcons name="file-download-done" size={24} color={theme} />}
 
                         <Text style={Styles.btnText}>Upload CV</Text>
                     </TouchableOpacity>
@@ -81,7 +81,7 @@ export default Profile = ({ route }) => {
                             <Text style={Styles.dashboardText}>About Me</Text>
                             <TouchableOpacity style={Styles.add} onPress={() => setShowMyInfor(prevShowSkills => !prevShowSkills)}>
                                 <Text>
-                                    {showMyInfor ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
+                                    {showMyInfor ? <AntDesign name="minuscircleo" size={24} color={theme} /> : <AntDesign name="pluscircleo" size={24} color={theme} />}
                                 </Text>
 
                             </TouchableOpacity>
@@ -98,7 +98,7 @@ export default Profile = ({ route }) => {
                             <Text style={Styles.dashboardText}>Education</Text>
                             <TouchableOpacity style={Styles.add} onPress={() => setShowEducation(prevShowEducation => !prevShowEducation)}>
                                 <Text>
-                                    {showEducation ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
+                                    {showEducation ? <AntDesign name="minuscircleo" size={24} color={theme} /> : <AntDesign name="pluscircleo" size={24} color={theme} />}
                                 </Text>
                             </TouchableOpacity>
                         </View>
@@ -150,7 +150,7 @@ export default Profile = ({ route }) => {
                             <Text style={Styles.dashboardText}>Skills</Text>
                             <TouchableOpacity style={Styles.add} onPress={() => setShowSkills(prevShowSkills => !prevShowSkills)}>
                                 <Text>
-                                    {showSkills ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
+                                    {showSkills ? <AntDesign name="minuscircleo" size={24} color={theme} /> : <AntDesign name="pluscircleo" size={24} color={theme} />}
                                 </Text>
                             </TouchableOpacity>
                         </View>
@@ -177,7 +177,7 @@ export default Profile = ({ route }) => {
                             <Text style={Styles.dashboardText}>Experience</Text>
                             <TouchableOpacity style={Styles.add} onPress={() => setShowExperience(prevShowEducation => !prevShowEducation)}>
                                 <Text>
-                                    {showExperience ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
+                                    {showExperience ? <AntDesign name="minuscircleo" size={24} color={theme} /> : <AntDesign name="pluscircleo" size={24} color={theme} />}
                                 </Text>
                             </TouchableOpacity>
                         </View>

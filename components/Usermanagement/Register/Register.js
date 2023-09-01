@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import { Text, View, TextInput, TouchableOpacity, Linking, } from 'react-native';
-import { Styles } from '../../../Styles'
+import { Styles,UsermanagementInputColor, hidePasswordEyeColor } from '../../../Styles'
 import { FontAwesome } from '@expo/vector-icons';
 import { RegisterIsEmpty, validateLength, isValidEmail } from '../../../utils/validations';
 import { useNavigation } from '@react-navigation/native';
@@ -43,12 +43,12 @@ export default Register = () => {
             </View>
             <View style={Styles.textInputDiv}>
                 <TextInput autoCompleteType="off"
-                    textContentType="none" placeholder="Username" placeholderTextColor="gray" style={Styles.TextInput("#461584", 250)} onChangeText={(value) => setUsername(value)} />
+                    textContentType="none" placeholder="Username" placeholderTextColor="gray" style={Styles.TextInput(UsermanagementInputColor, 250)} onChangeText={(value) => setUsername(value)} />
             </View>
 
             <View style={Styles.textInputDiv}>
                 <TextInput autoCompleteType="off"
-                    textContentType="none" placeholder="Email" placeholderTextColor="gray" style={Styles.TextInput("#461584", 250)} onChangeText={(value) => setEmail(value)} />
+                    textContentType="none" placeholder="Email" placeholderTextColor="gray" style={Styles.TextInput(UsermanagementInputColor, 250)} onChangeText={(value) => setEmail(value)} />
             </View>
 
             <View style={Styles.textInputDiv}>
@@ -58,13 +58,13 @@ export default Register = () => {
                     autoCompleteType="off"
                     textContentType="none"
                     placeholderTextColor="gray"
-                    style={Styles.TextInput("#461584", 240)}
+                    style={Styles.TextInput(UsermanagementInputColor, 240)}
                     onChangeText={(value) => setPassword(value)}
                 />
                 <TouchableOpacity onPress={() => { setHidePassword(!hidePassword) }}>
                     {hidePassword ?
-                        <FontAwesome name="eye" size={24} color="#C8ACED" /> :
-                        <FontAwesome name="eye-slash" size={24} color="#C8ACED" />}
+                        <FontAwesome name="eye" size={24} color={hidePasswordEyeColor} /> :
+                        <FontAwesome name="eye-slash" size={24} color={hidePasswordEyeColor} />}
                 </TouchableOpacity>
             </View>
             <Text style={{ margin: 20, textAlign: 'center', top: 3, color: 'aliceblue', fontSize: 18, width: 300 }}>

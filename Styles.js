@@ -1,10 +1,31 @@
 import { StyleSheet } from 'react-native';
+// #662DAF purple
+export const theme ="#662DAF"
+// #EFE3FF  lightpurple
+export const primaryColor = "#EFE3FF"
+// #461584 darkPurple
+export const UsermanagementInputColor = "#461584"
+// #A084E8 media Buttons
+export const mediaBtn = "#A084E8"
+//"#C8ACED" hide password color 
+export const hidePasswordEyeColor = "#C8ACED"
+// '#e7d5ff' login button color
+export const LoginBtn = '#e7d5ff'
+// '#ffe8cc' color for rating div
+export const ratingsColor = "#FFC436"
+//#FF8A00
+export const ratingStarColor = '#FF8A00'
+export const blueCardColor = '#3F9AE0'
+export const pinkCardColor = '#F94687'
+export const whiteColor = "#fff"
+export const blackColor = "#000"
+export const center = "center"
 export const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#662DAF',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: theme,
+    alignItems: center,
+    justifyContent: center,
   },
 
   section: {
@@ -17,26 +38,26 @@ export const Styles = StyleSheet.create({
   profilePic: {
     flex: 0,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: center,
+    alignItems: center,
     width: 85,
     height: 85,
-    backgroundColor: '#7939CB',
+    backgroundColor: theme,
     borderRadius: 20,
   },
   LoginWithMedia: {
     flex: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: center,
+    alignItems: center,
     height: 60,
     width: 150,
     borderRadius: 20,
-    backgroundColor: '#A084E8',
+    backgroundColor: mediaBtn,
   },
   searchInputDiv: {
     justifyContent: 'space-around',
-    backgroundColor: 'white',
-    shadowColor: '#000',
+    backgroundColor: whiteColor,
+    shadowColor: blackColor,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -45,7 +66,7 @@ export const Styles = StyleSheet.create({
     shadowRadius: 3,
     flex: 0,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: center,
     width: 318,
     height: 60,
     flexShrink: 0,
@@ -54,12 +75,12 @@ export const Styles = StyleSheet.create({
     fontSize: 20,
     top: -30,
     // margin: 5,
-    backgroundColor: 'white'
+    backgroundColor: whiteColor
   },
   searchInputDivs: {
     justifyContent: 'space-between',
-    backgroundColor: 'white',
-    shadowColor: '#000',
+    backgroundColor: whiteColor,
+    shadowColor: blackColor,
     shadowOffset: {
       width: 0,
       height: 3,
@@ -68,7 +89,7 @@ export const Styles = StyleSheet.create({
     shadowRadius: 3,
     flex: 0,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: center,
     width: 350,
     padding: 12,
     height: 60,
@@ -78,17 +99,17 @@ export const Styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     // margin: 5,
-    backgroundColor: 'white'
+    backgroundColor: whiteColor
   },
   companyDetailsLogo: {
     position: 'absolute',
     marginTop: 80,
     top: 60,
     left: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: center,
+    justifyContent: center,
     backgroundColor: 'grey',
-    shadowColor: '#000',
+    shadowColor: blackColor,
     shadowOffset: {
       width: 0,
       height: 5,
@@ -102,10 +123,10 @@ export const Styles = StyleSheet.create({
     marginLeft: '60%'
   },
   toogleDiv: {
-    backgroundColor: 'white',
+    backgroundColor: whiteColor,
     flex: 0,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: center,
     justifyContent: 'space-around',
     width: 350,
     height: 60,
@@ -120,7 +141,7 @@ export const Styles = StyleSheet.create({
     flex: 0,
     flexDirection: 'row',
     color: 'aliceblue',
-    alignItems: 'center',
+    alignItems: center,
     width: 318,
     height: 60,
     flexShrink: 0,
@@ -128,7 +149,7 @@ export const Styles = StyleSheet.create({
     paddingStart: 15,
     fontSize: 20,
     margin: 5,
-    backgroundColor: '#461584'
+    backgroundColor: UsermanagementInputColor
 
   },
   show: {
@@ -136,37 +157,35 @@ export const Styles = StyleSheet.create({
   },
   button: {
     flex: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: center,
+    justifyContent: center,
     width: 318,
     height: 60,
     margin: 5,
     flexShrink: 0,
     borderRadius: 20,
-    backgroundColor: '#e7d5ff',
+    backgroundColor: LoginBtn,
   },
 
   btnText: {
-    color: '#7939CB',
-    textAlign: 'center',
+    color: theme,
+    textAlign: center,
     fontSize: 18,
-    fontStyle: 'normal',
     fontWeight: 'bold',
   },
   btnT: {
-    color: '#7939CB',
+    color: theme,
     fontSize: 18,
-    fontStyle: 'normal',
     fontWeight: 'bold',
   },
 
   menuIcon: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: center,
+    alignItems: center
   },
   text: {
-    textAlign: 'center',
+    textAlign: center,
     top: 15
     , color: 'aliceblue',
     fontSize: 28,
@@ -182,8 +201,8 @@ export const Styles = StyleSheet.create({
   TextInput: (bgColor, InputWith) => ({
     color: "#fff",
     paddingLeft: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: center,
+    justifyContent: center,
     backgroundColor: bgColor,
     width: InputWith,
     height: 50,
@@ -191,12 +210,12 @@ export const Styles = StyleSheet.create({
     borderRadius: 10,
   }),
   Cardnumber: {
-    color: '#E7d5ff',
+    color: LoginBtn,
     fontSize: 30,
     fontWeight: 'bold',
   },
   Cardtexts: {
-    color: 'white',
+    color: whiteColor,
     fontSize: 22
   },
   displayFlex: {
@@ -205,15 +224,15 @@ export const Styles = StyleSheet.create({
     flex: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: center,
     marginTop: 5,
     padding: 1,
   },
   content: {
     width: 376,
     height: 250,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: center,
+    justifyContent: center,
     marginBottom: 1
   },
   menuContainer: {
@@ -227,19 +246,19 @@ export const Styles = StyleSheet.create({
     marginRight: 0.3,
     backgroundColor: '#F5EDFF',
     borderTopLeftRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: center,
+    justifyContent: center
   },
   company: {
     width: 188,
     backgroundColor: '#F5EDFF',
     borderTopRightRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: center,
+    justifyContent: center
   },
   whiteText: () => ({
     margin: 20,
-    textAlign: 'center',
+    textAlign: center,
     top: 3,
     color: 'aliceblue',
     fontSize: 18,
@@ -249,7 +268,7 @@ export const Styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'right',
-    alignItems: 'center',
+    alignItems: center,
     paddingTop: 80,
     paddingLeft: 170,
   },
@@ -257,7 +276,7 @@ export const Styles = StyleSheet.create({
     backgroundColor: '#fff',
     gap: 15,
     borderRadius: 10,
-    justifyContent: 'center',
+    justifyContent: center,
     padding: 15,
     width: 167,
     height: 151
@@ -270,11 +289,10 @@ export const Styles = StyleSheet.create({
     marginBottom: 10,
   }),
   header: {
-
     fontSize: 50,
     marginBottom: 20,
     marginLeft: 10,
-    color: 'white',
+    color: whiteColor,
     fontWeight: "bold"
   },
   register: {
@@ -282,7 +300,7 @@ export const Styles = StyleSheet.create({
     fontSize: 50,
     marginBottom: 20,
     marginLeft: 10,
-    color: 'white',
+    color: whiteColor,
     opacity: 0.2,
     fontWeight: 300
   },
@@ -293,16 +311,16 @@ export const Styles = StyleSheet.create({
     height: 5,
     flexShrink: 0,
     backgroundColor: '#D3D3D3',
-    alignSelf: 'center',
+    alignSelf: center,
 
   },
   center: {
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: center,
+    justifyContent: center
   },
   flex: {
     flex: 0,
-    alignItems: 'center',
+    alignItems: center,
     justifyContent: 'space-evenly',
     flexDirection: 'row',
     paddingBottom: 15,
@@ -312,11 +330,11 @@ export const Styles = StyleSheet.create({
     top: 5,
     flex: 1,
     justifyContent: 'space-around',
-    alignItems: 'center',
+    alignItems: center,
     flexDirection: 'row',
-    backgroundColor: '#ffe8cc',
+    backgroundColor: ratingsColor,
     borderRadius: 12,
-    width: '61px',
+    width: 61,
     height: 40,
     flexShrink: 0
   },
@@ -325,11 +343,11 @@ export const Styles = StyleSheet.create({
 
     flex: 0,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: center,
+    alignItems: center,
     width: 75,
     height: 75,
-    backgroundColor: '#7939CB',
+    backgroundColor: theme,
     borderRadius: 20,
     marginLeft: -7
 
@@ -338,10 +356,10 @@ export const Styles = StyleSheet.create({
     top: 5,
     flex: 1,
     justifyContent: 'space-around',
-    alignItems: 'center',
+    alignItems: center,
     flexDirection: 'row',
     borderRadius: 12,
-    width: '61px',
+    width: 61,
     height: 40,
     flexShrink: 0
   },
@@ -352,44 +370,44 @@ export const Styles = StyleSheet.create({
     borderRadius: 16,
     flex: 0,
     justifyContent: 'space-evenly',
-    alignItems: 'center',
+    alignItems: center,
     flexDirection: 'row'
   },
   laoding: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: center,
+    alignItems: center,
     margin: 10, // Apply margin to create space around the ActivityIndicator
   },
   tab: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: center,
+    alignItems: center,
     marginRight: 10,
     height: 50,
     width: 150,
     borderRadius: 16
   },
   selected2: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: center,
+    alignItems: center,
     backgroundColor: '#fdfcff',
     height: 50,
     width: 150,
-    color: 'white',
+    color: whiteColor,
     borderRadius: 16
   },
   applyBtn: (btnWith) => ({
     flex: 0,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: center,
     justifyContent: 'space-evenly',
     height: 55,
     width: btnWith,
     backgroundColor: 'red',
     borderRadius: 15,
     borderRadius: 20,
-    backgroundColor: '#7939CB',
-    shadowColor: '#7939CB',
+    backgroundColor: theme,
+    shadowColor: theme,
     shadowOffset: {
       width: 0,
       height: 11,
@@ -402,21 +420,21 @@ export const Styles = StyleSheet.create({
   applyBtnText: {
     fontSize: 25,
     fontWeight: 'bold',
-    color: '#E7d5ff'
+    color: LoginBtn
   },
 
   body: {
     flex: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: center,
+    alignItems: center,
     backgroundColor: '#faf6ff',
     height: '100%',
     width: '100%'
   },
   CompanyDetailsbody: {
     flex: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: center,
+    alignItems: center,
     backgroundColor: 'grey',
     height: '100%',
     width: '100%'
@@ -446,12 +464,12 @@ export const Styles = StyleSheet.create({
     height: 55,
     width: '35%',
     backgroundColor: '#E7D5FF',
-    color: '#000',
+    color: blackColor,
     borderRadius: 15,
     marginRight: 15,
     flex: 0,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: center,
+    justifyContent: center
   },
   selectProfilePictureButton: {
     flex: 1,
@@ -505,7 +523,7 @@ export const Styles = StyleSheet.create({
   navBar: {
     justifyContent: 'space-between',
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: whiteColor,
     shadowOffset: { width: 0, height: 11 },
     shadowColor: 'rgba(121, 57, 203, 0.12)',
     shadowOpacity: 1,
@@ -515,8 +533,8 @@ export const Styles = StyleSheet.create({
     height: 85,
     bottom: 8,
     borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: center,
+    justifyContent: center,
   },
   bottomBtns: {
     justifyContent: 'space-between',
@@ -526,8 +544,8 @@ export const Styles = StyleSheet.create({
     position: 'fixed',
     width: 350,
     height: 85,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: center,
+    justifyContent: center
   },
   gradient: {
     width: 224,
@@ -540,8 +558,8 @@ export const Styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: center,
+    alignItems: center,
     zIndex: 1,
   },
   headerView: {
@@ -563,24 +581,24 @@ export const Styles = StyleSheet.create({
   iconContainerView: {
     flex: 0,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: center,
+    alignItems: center,
     width: 55,
     height: 55,
-    backgroundColor: '#7939CB',
+    backgroundColor: theme,
     borderRadius: 20,
   },
   cardContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignContent: 'center',
+    alignContent: center,
     width: 350,
     height: 93,
     borderRadius: 14,
-    backgroundColor: '#EFE3FF',
+    backgroundColor: primaryColor,
     padding: 1.5,
-    // backgroundColor: 'white',
-    shadowColor: '#000',
+    // backgroundColor: whiteColor,
+    shadowColor: blackColor,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -606,8 +624,8 @@ export const Styles = StyleSheet.create({
     width: 100,
     borderRadius: 15,
     backgroundColor: 'lightseagreen',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: center,
+    justifyContent: center,
     flexDirection: 'row',
 
   },
@@ -615,12 +633,12 @@ export const Styles = StyleSheet.create({
     top: 1,
     width: 350,
     borderRadius: 14,
-    backgroundColor: 'white',
+    backgroundColor: whiteColor,
     padding: 15,
     paddingLeft: 1,
     marginBottom: 2,
-    backgroundColor: 'white',
-    shadowColor: '#000',
+    backgroundColor: whiteColor,
+    shadowColor: blackColor,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -631,8 +649,8 @@ export const Styles = StyleSheet.create({
   progressContainer: {
     height: 90,
     width: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: center,
+    alignItems: center,
   },
   progressBar: {
     width: 80,
@@ -640,15 +658,15 @@ export const Styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 4,
     borderStyle: 'solid',
-    borderColor: '#662DAF',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderColor: theme,
+    alignItems: center,
+    justifyContent: center,
     position: 'relative',
   },
   progressText: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#662DAF',
+    color: theme,
   },
   skillsContainer: {
     flexDirection: "row",
@@ -710,17 +728,17 @@ export const Styles = StyleSheet.create({
   centerView: {
     width: 350,
     height: 350,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignText: 'center'
+    justifyContent: center,
+    alignItems: center,
+    alignText: center
   },
   UploadCVBtn: {
     padding: 15,
     flexShrink: 0,
-    backgroundColor: '#ede3fa',
+    backgroundColor: LoginBtn,
     justifyContent: 'space-around',
     gap: 5,
-    alignItems: 'center',
+    alignItems: center,
     flex: 0,
     flexDirection: 'row',
     borderRadius: 15
@@ -732,14 +750,14 @@ export const Styles = StyleSheet.create({
     backgroundColor: BtnColor,
     justifyContent: 'space-around',
     gap: 5,
-    alignItems: 'center',
+    alignItems: center,
     flex: 0,
     flexDirection: 'row',
     borderRadius: 15
   }),
   detailsScrollView: {
     width: 375,
-    backgroundColor: 'white',
+    backgroundColor: whiteColor,
     marginTop: 15,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
@@ -759,31 +777,31 @@ export const Styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: center,
+    alignItems: center,
     zIndex: 1,
   },
   pinkCard: {
-    justifyContent: 'center',
+    justifyContent: center,
     paddingLeft: 20,
     width: 150,
     height: 93,
     flexShrink: 0,
-    backgroundColor: '#F94687',
+    backgroundColor: pinkCardColor,
     borderRadius: 14,
   },
   blueCard: {
-    justifyContent: 'center',
+    justifyContent: center,
     paddingLeft: 20,
     width: 150,
     height: 93,
     flexShrink: 0,
-    backgroundColor: '#3F9AE0',
+    backgroundColor: blueCardColor,
     borderRadius: 14,
   },
   more: {
     fontSize: 20,
-    color: '#7939CB'
+    color: theme
   },
   salary: {
     width: '70%',
@@ -794,11 +812,11 @@ export const Styles = StyleSheet.create({
   topSearch: {
     flex: 0,
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: center,
+    justifyContent: center,
     width: '100%',
     height: 180,
-    backgroundColor: '#7939cb',
+    backgroundColor: theme,
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10
   }
@@ -811,9 +829,9 @@ export const Styles = StyleSheet.create({
   //     borderTopRightRadius:15,
   //     borderBottomLeftRadius:5,
   //     display: 'flex',
-  //     alignItems: 'center',
-  //     justifyContent: 'center',
-  //     textAlign: 'center',
+  //     alignItems: center,
+  //     justifyContent: center,
+  //     textAlign: center,
   //     fontSize: '16px',
   //     fontWeight: 'bold',
   //     backgroundColor: 'darkGray',
