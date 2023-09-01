@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import MySvg from '../Commons/MySvg';
 import Svg, { Circle } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
+import LogoutComponent from '../Commons/LogoutComponent';
 export default Applications =  ({ route }) => {
     const { userData } = route.params;
     const [selectedTab, setSelectedTab] = useState('applications'); // Initialize with 'applications'
@@ -14,9 +15,12 @@ export default Applications =  ({ route }) => {
     const handleTabChange = (tab) => {
         setSelectedTab(tab);
     };
+    const [isVisible, setIsVisible] = useState(false);
+   
     return (
         <View style={Styles.body}>
             <View style={{ top: 90 }}>
+            <LogoutComponent isVisible={isVisible} />
                 <View style={Styles.headerView}>
                     <View style={Styles.flex}>
                         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
@@ -24,7 +28,7 @@ export default Applications =  ({ route }) => {
                         </TouchableOpacity>
                         <Text style={Styles.dashboardText}>Applocations</Text>
                     </View>
-                    <TouchableOpacity style={Styles.center}>
+                    <TouchableOpacity style={Styles.center} onPress={()=>{ setIsVisible(!isVisible)}}>
                         <Svg xmlns="http://www.w3.org/2000/svg" width="5" height="23" viewBox="0 0 5 23" fill="none">
                             <Circle cx="2.5" cy="2.5" r="2.5" fill="#000" />
                             <Circle cx="2.5" cy="11.5" r="2.5" fill="#000" />

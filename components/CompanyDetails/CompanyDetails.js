@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native';
-import { FontAwesome5, FontAwesome, Entypo, Ionicons } from '@expo/vector-icons';
-import Svg, { Path, Circle } from 'react-native-svg';;
-import { Styles } from '../../Styles'
+import {FontAwesome, Entypo, Ionicons } from '@expo/vector-icons';
+import LogoutComponent from '../Commons/LogoutComponent';
+import Svg, {Circle } from 'react-native-svg';;
+import { LoginBtn, Styles,theme } from '../../Styles'
 
 import { useNavigation } from '@react-navigation/native';
 export default CompanyDetails = () => {
     
   const navigation = useNavigation();
-    const [images, setImages] = useState([1, 2, 3, 4, 5, 6])
+    const [images, setImages] = useState([{id: 1, name: '1'}, {id: 2, name:'2'}])
     // ================================ Show and  hide states =======================
-
+    const [isVisible, setIsVisible] = useState(false);
 
     // ==================================Functions =================================================================
 
     return (
         <View style={Styles.CompanyDetailsbody}>
             <View style={{ top: 60 }}>
+            <LogoutComponent isVisible={isVisible} />
                 <View style={Styles.headerView}>
                     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                         <Ionicons name="chevron-back" size={30} color="white" />
@@ -28,7 +30,7 @@ export default CompanyDetails = () => {
                         flexDirection: 'row',
                         gap: 40
                     }}>
-                        <TouchableOpacity style={Styles.center}>
+                        <TouchableOpacity style={Styles.center} onPress={()=>{ setIsVisible(!isVisible)}}>
                             <Svg xmlns="http://www.w3.org/2000/svg" width="5" height="23" viewBox="0 0 5 23" fill="none">
                                 <Circle cx="2.5" cy="2.5" r="2.5" fill="#ffff" />
                                 <Circle cx="2.5" cy="11.5" r="2.5" fill="#ffff" />
@@ -58,9 +60,9 @@ export default CompanyDetails = () => {
                     </View>
 
                 </View>
-                <View style={Styles.companyDetailsLogo}>
+                {/* <View style={Styles.companyDetailsLogo}>
                     <Text>Testing</Text>
-                </View>
+                </View> */}
                 <ScrollView style={Styles.detailsScrollView}>
 
                     <View>
@@ -76,7 +78,7 @@ export default CompanyDetails = () => {
                         data={images}
                         dotsx
                         renderItem={({ item }) => (
-                            <View style={Styles.skillStyle} key={item}>
+                            <View style={Styles.skillStyle} key={item.id}>
                                 <View style={{
                                     width: 205,
                                     height: 126,
@@ -95,7 +97,7 @@ export default CompanyDetails = () => {
                     <View>
                         <Text style={Styles.dashboardText}>Location</Text>
                         <View style={{flex:0,flexDirection:'row', alignItems:'center',justifyContent:'left',gap:12, marginTop:15}}>
-                            <Entypo name="location" size={34} color="#7939CB" />
+                            <Entypo name="location" size={34} color={theme} />
                             <Text >Sandton </Text>
                         </View>
 
@@ -104,10 +106,10 @@ export default CompanyDetails = () => {
             </View >
 
             <View style={Styles.bottomBtns}>
-                <TouchableOpacity style={Styles.availablepPositionsBtn}>
+                <TouchableOpacity style={Styles. applyBtn(350)}>
                     <Text style={Styles.Cardnumber}>21</Text>
                     <Text style={Styles.applyBtnText}>Available positions</Text>
-                    <Ionicons name="arrow-forward" size={32} color="#E7d5ff" />
+                    <Ionicons name="arrow-forward" size={32} color={LoginBtn} />
                 </TouchableOpacity>
             </View>
             <View style={Styles.bottomLine}></View>

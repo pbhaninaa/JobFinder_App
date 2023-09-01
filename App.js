@@ -13,7 +13,7 @@ import Applications from './components/Applications/Applications';
 import Login from './components/Usermanagement/Login/Login';
 import Register from './components/Usermanagement/Register/Register';
 import Search from './components/Search/Search';
-
+import HomeComponent from './components/Home/HomeComponent';
 const Stack = createStackNavigator();
 export default function App() {
   return (
@@ -22,7 +22,10 @@ export default function App() {
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
-          }}>           
+          }}>
+          <Stack.Screen name="Landing" component={HomeComponent} />
+          <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Home" component={DashBoard} />
           <Stack.Screen name="Notifications" component={Notifications} />
           <Stack.Screen name="Profile" component={Profile} />
@@ -30,11 +33,8 @@ export default function App() {
           <Stack.Screen name="JobDetails" component={JobDetails} />
           <Stack.Screen name="CompanyDetails" component={CompanyDetails} />
           <Stack.Screen name="Applications" component={Applications} />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="Search" component={Search} />
         </Stack.Navigator>
-        
       </NavigationContainer>
     </SafeAreaView>
   );

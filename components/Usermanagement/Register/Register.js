@@ -1,14 +1,34 @@
 import { React, useEffect, useState } from 'react'
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Linking, } from 'react-native';
-// import CheckBox from '@react-native-community/checkbox';
-import { Styles } from '../../../Styles'
-import { AntDesign } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
-
+import { Text, View, TextInput, TouchableOpacity, Linking, } from 'react-native';
+import { Styles,UsermanagementInputColor, hidePasswordEyeColor } from '../../../Styles'
+import { FontAwesome } from '@expo/vector-icons';
+import { RegisterIsEmpty, validateLength, isValidEmail } from '../../../utils/validations';
+import { useNavigation } from '@react-navigation/native';
 export default Register = () => {
+    const navigation = useNavigation();
+    const [hidePassword, setHidePassword] = useState(true);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+
+    const save = () => {
+        if (RegisterIsEmpty(username, email, password)) {
+            if (!isValidEmail(email)) {
+                navigation.navigate('Login')
+                setUsername('')
+                setEmail('')
+                setPassword('')
+            } else {
+                alert("Please enter valid email")
+            }
+
+        } else {
+            alert('Enter something');
+        }
+    }
     return (
-        <View>
-            <View style={Styles.buttons}>
+        <View style={Styles.container}>
+            <View style={Styles.flex}>
                 <TouchableOpacity style={Styles.header}>
                     <Text style={Styles.header}>
                         Sign In
@@ -22,31 +42,39 @@ export default Register = () => {
 
             </View>
             <View style={Styles.textInputDiv}>
-                <TextInput placeholder="Enter your name here" placeholderTextColor="gray" style={Styles.TextInput("#461584")} />
+                <TextInput autoCompleteType="off"
+                    textContentType="none" placeholder="Username" placeholderTextColor="gray" style={Styles.TextInput(UsermanagementInputColor, 250)} onChangeText={(value) => setUsername(value)} />
             </View>
 
             <View style={Styles.textInputDiv}>
-                <TextInput placeholder="Email" placeholderTextColor="gray" style={Styles.TextInput("#461584")} />
+                <TextInput autoCompleteType="off"
+                    textContentType="none" placeholder="Email" placeholderTextColor="gray" style={Styles.TextInput(UsermanagementInputColor, 250)} onChangeText={(value) => setEmail(value)} />
             </View>
 
             <View style={Styles.textInputDiv}>
                 <TextInput
                     placeholder="Password"
+                    secureTextEntry={hidePassword}
+                    autoCompleteType="off"
+                    textContentType="none"
                     placeholderTextColor="gray"
-                    secureTextEntry={true}
-                    style={Styles.TextInput} />
-                <TouchableOpacity >
-                    <Text style={Styles.show}>Show</Text>
+                    style={Styles.TextInput(UsermanagementInputColor, 240)}
+                    onChangeText={(value) => setPassword(value)}
+                />
+                <TouchableOpacity onPress={() => { setHidePassword(!hidePassword) }}>
+                    {hidePassword ?
+                        <FontAwesome name="eye" size={24} color={hidePasswordEyeColor} /> :
+                        <FontAwesome name="eye-slash" size={24} color={hidePasswordEyeColor} />}
                 </TouchableOpacity>
             </View>
             <Text style={{ margin: 20, textAlign: 'center', top: 3, color: 'aliceblue', fontSize: 18, width: 300 }}>
                 By tap Sign Up button you accept terms and privacy this app
             </Text>
-            <TouchableOpacity style={Styles.button} >
+            <TouchableOpacity style={Styles.button} onPress={save}>
                 <Text style={Styles.btnText}>Create My Account</Text>
             </TouchableOpacity>
 
-            <Text style={{ marginLeft: '30%', top: 25, color: 'lightgrey', opacity: 0.2, fontSize: 18 }}>
+            <Text style={{ top: 10, color: 'lightgrey', opacity: 0.2, fontSize: 18 }}>
                 App Version 1.0
             </Text>
 

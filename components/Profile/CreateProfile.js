@@ -29,7 +29,7 @@ import {
 } from "@expo/vector-icons";
 import { SelectList } from "react-native-dropdown-select-list";
 
-import { Styles } from '../../Styles'
+import { Styles,theme } from '../../Styles'
 
 
 
@@ -323,7 +323,7 @@ const CreateProfile = ({ navigation }) => {
                     <Text style={Styles.headingStyle}>Click here to add Experience </Text>
                     <TouchableOpacity style={Styles.add} onPress={ExperienceVisible}>
                         <Text >
-                            {isExperienceViewVisible ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
+                            {isExperienceViewVisible ? <AntDesign name="minuscircleo" size={24} color={theme} /> : <AntDesign name="pluscircleo" size={24} color={theme} />}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -348,7 +348,7 @@ const CreateProfile = ({ navigation }) => {
                             placeholder="From - To eg.(2000 Jan - 2002 Dec)"
                             placeholderTextColor="grey"
                             onChangeText={(value) => setDuration(value)}
-                        /><TouchableOpacity style={Styles.editBtn("#7939CB")} onPress={SaveWorkArray}>
+                        /><TouchableOpacity style={Styles.editBtn({theme})} onPress={SaveWorkArray}>
                             <Text >Save Experience</Text>
                         </TouchableOpacity>
                         {WorkInforArray.map((data, index) => (
@@ -384,7 +384,7 @@ const CreateProfile = ({ navigation }) => {
 
                     <TouchableOpacity style={Styles.add} onPress={viewHidden}>
                         <Text >
-                            {isEducationViewVisible ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
+                            {isEducationViewVisible ? <AntDesign name="minuscircleo" size={24} color={theme} /> : <AntDesign name="pluscircleo" size={24} color={theme} />}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -410,7 +410,7 @@ const CreateProfile = ({ navigation }) => {
                             onChangeText={(value) => setPeriod(value)}
                         />
                         <TouchableOpacity
-                            style={Styles.editBtn("#7939CB")}
+                            style={Styles.editBtn({theme})}
                             onPress={SaveEducationArray}
                         >
                             <Text>Save Education</Text>
@@ -445,7 +445,7 @@ const CreateProfile = ({ navigation }) => {
                     <Text style={Styles.headingStyle}>Click here to add a Skill </Text>
                     <TouchableOpacity style={Styles.add} onPress={SkillVisible}>
                         <Text >
-                            {isSkillsViewVisible ? <AntDesign name="minuscircleo" size={24} color="#7939CB" /> : <AntDesign name="pluscircleo" size={24} color="#7939CB" />}
+                            {isSkillsViewVisible ? <AntDesign name="minuscircleo" size={24} color={theme} /> : <AntDesign name="pluscircleo" size={24} color={theme} />}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -464,7 +464,7 @@ const CreateProfile = ({ navigation }) => {
                                 data={skillProficiency}
                             />
                         </View>
-                        <TouchableOpacity style={Styles.editBtn("#7939CB")} onPress={SaveSkill}>
+                        <TouchableOpacity style={Styles.editBtn({theme})} onPress={SaveSkill}>
                             <Text> Save Skill</Text>
                         </TouchableOpacity>
                         {skills.length > 0 && (
