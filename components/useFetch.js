@@ -1,7 +1,20 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const useFetch = (endpoint, query) => {
+//====================== temporaly server ==================
+// export const fetchUsers = async () => {
+//   try {
+//     const response = await axios.get('http://localhost:3000/users');
+//     console.log('Users:', response.data);
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error fetching users:', error);
+//     throw error;
+//   }
+// };
+//==========================================================
+
+export const useFetch = (endpoint, query) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -43,4 +56,4 @@ const useFetch = (endpoint, query) => {
   return { data, isLoading, error, refetch };
 };
 
-export default useFetch;
+

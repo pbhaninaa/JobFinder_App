@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, ScrollView, ActivityIndicator, Image } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { Styles } from '../../Styles'
 import NavBar from '../Commons/NavBar';
 import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import useFetch from '../useFetch'
+// import useFetch from '../useFetch'
 import UserProfileProgress from '../Progress/UserProfileProgress';
+import LogoutComponent from '../Commons/LogoutComponent';
 
 export default DashBoard = ({ route }) => {
 
@@ -191,8 +192,11 @@ export default DashBoard = ({ route }) => {
         const name = Job_Name.substr(0, 18);
         return Job_Name.length > 18 ? name + '...' : name
     };
+   
     return (
         <View style={Styles.body}>
+     
+
             <View style={Styles.headerView}>
                 <View style={{ gap: 15 }}>
                     <Text style={Styles.helloText}>Hello,
@@ -212,7 +216,7 @@ export default DashBoard = ({ route }) => {
             </View>
             <View style={Styles.cardContainer}>
                 <View style={Styles.progressContainer}>
-                    <UserProfileProgress />
+                    <UserProfileProgress userProfile={loggedUser} />
                 </View>
                 <View style={Styles.progressContainer}>
                     <Text style={Styles.btnText}>Complete your profile</Text>

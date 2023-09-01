@@ -11,6 +11,8 @@ export default Search = ({ route }) => {
     const navigation = useNavigation();
     const [itemToSearch, setSearch] = useState('developer');
     const [testing, setTesting] = useState('')
+    
+
 
     // const { data, isLoading, Error } = useFetch("search", {
     //     query: itemToSearch,

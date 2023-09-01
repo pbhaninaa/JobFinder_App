@@ -13,6 +13,13 @@ export const passwordMismatch = (password, confirmPassword) => {
       password.length !== 0
     );
   };
+  export const RegisterIsEmpty = (username, email, password) => {
+    return (
+      username.length !== 0 &&
+      email.length !== 0 &&
+      password.length !== 0
+    );
+  };
   export const isValidExperience = (newObj) => {
     return newObj.company != "" && newObj.position != "" && newObj.duration != "";
   };

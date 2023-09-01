@@ -14,15 +14,24 @@ export const Styles = StyleSheet.create({
     flexShrink: 0,
     marginBottom: 80,
   },
-  profilePic: { flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: 85, height: 85, backgroundColor: '#7939CB', borderRadius: 20, },
+  profilePic: {
+    flex: 0,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 85,
+    height: 85,
+    backgroundColor: '#7939CB',
+    borderRadius: 20,
+  },
   LoginWithMedia: {
     flex: 0,
     justifyContent: 'center',
-    height: 90,
+    alignItems: 'center',
+    height: 60,
     width: 150,
-    borderRadius: 10,
+    borderRadius: 20,
     backgroundColor: '#A084E8',
-    color: '#000000'
   },
   searchInputDiv: {
     justifyContent: 'space-around',
@@ -136,13 +145,7 @@ export const Styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#e7d5ff',
   },
-  buttons: {
-    flex: 0,
-    flexDirection: 'row',
-    justifyContent: '',
-    alignItems: 'center',
-    padding: 1,
-  },
+
   btnText: {
     color: '#7939CB',
     textAlign: 'center',
@@ -156,6 +159,7 @@ export const Styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: 'bold',
   },
+
   menuIcon: {
     flex: 1,
     justifyContent: 'center',
@@ -176,6 +180,7 @@ export const Styles = StyleSheet.create({
     width: 320
   },
   TextInput: (bgColor, InputWith) => ({
+    color: "#fff",
     paddingLeft: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -212,7 +217,7 @@ export const Styles = StyleSheet.create({
     marginBottom: 1
   },
   menuContainer: {
-    top: 100,
+    top: 110,
     height: 180,
     flexDirection: 'row',
     width: 376
@@ -232,17 +237,48 @@ export const Styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  whiteText: () => ({
+    margin: 20,
+    textAlign: 'center',
+    top: 3,
+    color: 'aliceblue',
+    fontSize: 18,
+    width: 300
+  }),
+  modalContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'right',
+    alignItems: 'center',
+    paddingTop: 80,
+    paddingLeft: 170,
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    gap: 15,
+    borderRadius: 10,
+    justifyContent: 'center',
+    padding: 15,
+    width: 167,
+    height: 151
+  },
 
+  headerText:(color)=> ({
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: color,
+    marginBottom: 10,
+  }),
   header: {
-    fontfamily: 'Poppins',
+
     fontSize: 50,
     marginBottom: 20,
     marginLeft: 10,
     color: 'white',
-    fontWeight: 300
+    fontWeight: "bold"
   },
   register: {
-    fontfamily: 'Poppins',
+
     fontSize: 50,
     marginBottom: 20,
     marginLeft: 10,
@@ -252,7 +288,7 @@ export const Styles = StyleSheet.create({
   },
   bottomLine: {
     position: 'sticky',
-    top: 80,
+    top: 100,
     width: 200,
     height: 5,
     flexShrink: 0,
@@ -265,13 +301,12 @@ export const Styles = StyleSheet.create({
     justifyContent: 'center'
   },
   flex: {
-
-
     flex: 0,
     alignItems: 'center',
     justifyContent: 'space-evenly',
     flexDirection: 'row',
     paddingBottom: 15,
+    marginTop: 15,
   },
   rate: {
     top: 5,
@@ -285,6 +320,7 @@ export const Styles = StyleSheet.create({
     height: 40,
     flexShrink: 0
   },
+
   PostDetailsIcon: {
 
     flex: 0,
@@ -362,26 +398,7 @@ export const Styles = StyleSheet.create({
     shadowRadius: 21,
     elevation: 5,
   }),
-  availablepPositionsBtn: {
-    flex: 0,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    height: 85,
-    width: '100%',
-    backgroundColor: 'red',
-    borderRadius: 15,
-    borderRadius: 20,
-    backgroundColor: '#7939CB',
-    shadowColor: '#7939CB',
-    shadowOffset: {
-      width: 0,
-      height: 11,
-    },
-    shadowOpacity: 0.47,
-    shadowRadius: 21,
-    elevation: 5,
-  },
+
   applyBtnText: {
     fontSize: 25,
     fontWeight: 'bold',
@@ -411,7 +428,7 @@ export const Styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   headingStyle: {
-    fontSize: "15px",
+    fontSize: 15,
     fontWeight: "bold",
     fontWeight: "bold",
     marginBottom: 5,
@@ -616,17 +633,23 @@ export const Styles = StyleSheet.create({
     width: 100,
     justifyContent: 'center',
     alignItems: 'center',
-
   },
-  // progressBar: {
-  //   // height: 80,
-  //   // width: 80,
-  //   // borderRadius: 50,
-  //   // backgroundColor: '#662DAF',
-  //   // alignItems: 'center',
-  //   // justifyContent: 'center',
-
-  // },================================================
+  progressBar: {
+    width: 80,
+    height: 80,
+    borderRadius: 50,
+    borderWidth: 4,
+    borderStyle: 'solid',
+    borderColor: '#662DAF',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+  },
+  progressText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#662DAF',
+  },
   skillsContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -683,21 +706,7 @@ export const Styles = StyleSheet.create({
     borderRadius: 15
   },
   //===================================================
-  progressBar: {
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-    borderRightColor: 'transparent',
-    borderWidth: 4,
-    borderStyle: 'solid',
-    borderColor: '#662DAF',
-    alignItems: 'center',
-    justifyContent: 'center',
-    animationName: 'rotate',
-    animationDuration: '1s',
-    animationTimingFunction: 'linear',
-    animationIterationCount: 'infinite',
-  },
+
   centerView: {
     width: 350,
     height: 350,

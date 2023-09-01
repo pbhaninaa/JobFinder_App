@@ -3,12 +3,14 @@ import { View, Text, TouchableOpacity, ScrollView, FlatList, Image } from 'react
 import { FontAwesome5, Ionicons, AntDesign, MaterialIcons } from '@expo/vector-icons';
 import Svg, { Path, Circle } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
+import LogoutComponent from '../Commons/LogoutComponent';
 // import DocumentPicker from 'react-native-document-picker';
 import { Styles } from '../../Styles'
 export default Profile = ({ route }) => {
     const { data } = route.params;
     const navigation = useNavigation();
     const [cv, setCV] = useState(null)
+    const [isVisible, setIsVisible] = useState(false);
     // ================================ Show and  hide states =======================
     const [showEducation, setShowEducation] = useState(false)
     const [showSkills, setShowSkills] = useState(false)
@@ -37,6 +39,7 @@ export default Profile = ({ route }) => {
     return (
         <View style={Styles.body}>
             <View style={{ top: 30 }}>
+            <LogoutComponent isVisible={isVisible} />
                 <View style={Styles.headerView}>
                     <View style={Styles.flex}>
                         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
@@ -44,7 +47,7 @@ export default Profile = ({ route }) => {
                         </TouchableOpacity>
                         <Text style={Styles.dashboardText}>Profile</Text>
                     </View>
-                    <TouchableOpacity style={Styles.center}>
+                    <TouchableOpacity style={Styles.center} onPress={()=>{ setIsVisible(!isVisible)}}>
                         <Svg xmlns="http://www.w3.org/2000/svg" width="5" height="23" viewBox="0 0 5 23" fill="none">
                             <Circle cx="2.5" cy="2.5" r="2.5" fill="#000" />
                             <Circle cx="2.5" cy="11.5" r="2.5" fill="#000" />

@@ -4,14 +4,14 @@ import { FontAwesome5, FontAwesome, Entypo, Ionicons } from '@expo/vector-icons'
 import Svg, { Path, Circle } from 'react-native-svg';
 import { Styles } from '../../Styles'
 import MapView, { Marker } from 'react-native-maps';
-
+import LogoutComponent from '../Commons/LogoutComponent';
 import { useNavigation } from '@react-navigation/native';
 export default JobDetails = ({ route }) => {
     const { jobData } = route.params;
     const navigation = useNavigation();
     // ================================ Show and  hide states =======================
     const [show, setShow] = useState('description')
-
+    const [isVisible, setIsVisible] = useState(false);
 
     // ==================================Functions =================================================================
     const JobTittleSubString = (Job_Name) => {
@@ -27,6 +27,7 @@ export default JobDetails = ({ route }) => {
     return (
         <View style={Styles.body}>
             <View style={{ top: 70 }}>
+            <LogoutComponent isVisible={isVisible} />
                 <View style={Styles.headerView}>
                     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                         <Ionicons name="chevron-back" size={24} color="black" />
@@ -38,7 +39,7 @@ export default JobDetails = ({ route }) => {
                         flexDirection: 'row',
                         gap: 40
                     }}>
-                        <TouchableOpacity style={Styles.center}>
+                        <TouchableOpacity style={Styles.center} >
                             <Svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14" fill="none">
                                 <Path d="M14.7566 4.93237L9.60021 0.182841C9.14886 -0.23294 8.4375 0.104591 8.4375 0.750465V3.25212C3.73157 3.30959 0 4.31562 0 9.07267C0 10.9927 1.1596 12.8948 2.4414 13.8893C2.84139 14.1996 3.41145 13.8101 3.26397 13.3071C1.93553 8.77542 3.89405 7.57236 8.4375 7.50264V10.25C8.4375 10.8969 9.14942 11.2329 9.60021 10.8176L14.7566 6.06761C15.0809 5.7688 15.0814 5.23158 14.7566 4.93237Z" fill="#4F5B79" />
                             </Svg>
@@ -49,7 +50,7 @@ export default JobDetails = ({ route }) => {
                                 <Path d="M2.42033 15.7767C1.75758 16.0837 1 15.5998 1 14.8694V1.6875C1 1.58272 1.05086 1.43096 1.24427 1.27736C1.43942 1.12239 1.74747 1 2.125 1H14.875C15.2525 1 15.5606 1.12239 15.7557 1.27736C15.9491 1.43096 16 1.58272 16 1.6875V14.8694C16 15.5998 15.2424 16.0837 14.5797 15.7767L9.76098 13.5445C8.96115 13.174 8.03885 13.174 7.23902 13.5445L2.42033 15.7767Z" stroke="#4F5B79" stroke-width="2" />
                             </Svg>
                         </TouchableOpacity>
-                        <TouchableOpacity style={Styles.center}>
+                        <TouchableOpacity style={Styles.center} onPress={()=>{ setIsVisible(!isVisible)}}>
                             <Svg xmlns="http://www.w3.org/2000/svg" width="5" height="23" viewBox="0 0 5 23" fill="none">
                                 <Circle cx="2.5" cy="2.5" r="2.5" fill="#4F5B79" />
                                 <Circle cx="2.5" cy="11.5" r="2.5" fill="#4F5B79" />
