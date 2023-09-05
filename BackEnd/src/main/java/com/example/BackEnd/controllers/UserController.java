@@ -12,13 +12,14 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin(origins = "*")
 public class UserController {
     @Autowired
     private UserService userService;
 
     @PostMapping("/create")
     public UserDetails createUser(@RequestBody UserDetails userDetails) {
-
+ System.out.println("=========================================================");
         return userService.saveUserDetails(userDetails);
     }
 
@@ -30,9 +31,8 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<UserDetails>> getAllUsers() {
-        List<UserDetails> users = userService.getUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public List<UserDetails> getAllUsers() {
+        return userService.getUsers();
     }
 
     @DeleteMapping("/{id}")

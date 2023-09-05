@@ -1,9 +1,10 @@
 import { React, useEffect, useState } from 'react'
 import { Text, View, TextInput, TouchableOpacity, Linking, } from 'react-native';
-import { Styles,UsermanagementInputColor, hidePasswordEyeColor } from '../../../Styles'
+import { Styles, UsermanagementInputColor, hidePasswordEyeColor } from '../../../Styles'
 import { FontAwesome } from '@expo/vector-icons';
 import { RegisterIsEmpty, validateLength, isValidEmail } from '../../../utils/validations';
 import { useNavigation } from '@react-navigation/native';
+import { handleRegister } from '../../MyLocalDb';
 export default Register = () => {
     const navigation = useNavigation();
     const [hidePassword, setHidePassword] = useState(true);
@@ -14,10 +15,13 @@ export default Register = () => {
     const save = () => {
         if (RegisterIsEmpty(username, email, password)) {
             if (!isValidEmail(email)) {
-                navigation.navigate('Login')
-                setUsername('')
-                setEmail('')
-                setPassword('')
+                const navigate = navigation.navigate('Login')
+                const user = {
+                    email: email,
+                    username: username,
+                    password: password
+                }
+                handleRegister(user, navigate);
             } else {
                 alert("Please enter valid email")
             }
@@ -43,12 +47,12 @@ export default Register = () => {
             </View>
             <View style={Styles.textInputDiv}>
                 <TextInput autoCompleteType="off"
-                    textContentType="none" placeholder="Username" placeholderTextColor="gray" style={Styles.TextInput(UsermanagementInputColor, 250)} onChangeText={(value) => setUsername(value)} />
+                    textContentType="none" placeholder="Username" placeholderTextColor="gray" style={Styles.TextInput("white", UsermanagementInputColor, 240)} onChangeText={(value) => setUsername(value)} />
             </View>
 
             <View style={Styles.textInputDiv}>
                 <TextInput autoCompleteType="off"
-                    textContentType="none" placeholder="Email" placeholderTextColor="gray" style={Styles.TextInput(UsermanagementInputColor, 250)} onChangeText={(value) => setEmail(value)} />
+                    textContentType="none" placeholder="Email" placeholderTextColor="gray" style={Styles.TextInput("white", UsermanagementInputColor, 240)} onChangeText={(value) => setEmail(value)} />
             </View>
 
             <View style={Styles.textInputDiv}>
@@ -58,7 +62,7 @@ export default Register = () => {
                     autoCompleteType="off"
                     textContentType="none"
                     placeholderTextColor="gray"
-                    style={Styles.TextInput(UsermanagementInputColor, 240)}
+                    style={Styles.TextInput("white", UsermanagementInputColor, 240)}
                     onChangeText={(value) => setPassword(value)}
                 />
                 <TouchableOpacity onPress={() => { setHidePassword(!hidePassword) }}>

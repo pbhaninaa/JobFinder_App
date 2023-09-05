@@ -31,16 +31,14 @@ public class Application {
     private String jobDescription;
     private String jobRequirements;
     private String jobMinSalary;
-    private Date postedAt;
-    private Date expiresAt;
-    private Date appliedAt;
+    private String postedAt;
+    private String expiresAt;
+    private String appliedAt;
     private String applyLink;
     private int companyRate;
 
     @ManyToOne
-    @JoinColumn(name = "applicant_id") // Assuming there's a foreign key column in Application referencing Applicant
+    @JoinColumn(name = "applicant_id")
     private Applicant applicant;
-
-    // Getters and setters, constructors, and other methods
 }
 

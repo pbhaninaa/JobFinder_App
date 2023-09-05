@@ -1,48 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, TextInput, Image } from 'react-native';
-import { Styles,theme } from '../../Styles'
+import { Styles, theme } from '../../Styles'
 import { Ionicons, Entypo, Feather, FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import Svg, { Path, G, Defs, Rect, ClipPath } from 'react-native-svg';
-import useFetch from '../useFetch'
+import { useFetch } from '../useFetch'
 
 export default Search = ({ route }) => {
-    const { data } = route.params;
+    const { data: initialData, isLoading } = route.params;
     const navigation = useNavigation();
-    const [itemToSearch, setSearch] = useState('developer');
-    const [testing, setTesting] = useState('')
-    
+    const [itemToSearch, setItemSearch] = useState('');
+    const [data, setData] = useState(initialData);
 
-
-    // const { data, isLoading, Error } = useFetch("search", {
-    //     query: itemToSearch,
-    //     num_pages: "1",
-    // });
-    const [isLoading, setLoading] = useState(false)
-
-    // const Searching = () => {
-    //     alert(testing)
-    //     setSearch(testing)
-    //     alert(itemToSearch + "good")
-    //     setTesting('')
-    // }
-
-    const JobTittleSubString = (Job_Name) => {
+    const JobTitleSubstring = (Job_Name) => {
         const name = Job_Name.substr(0, 18);
         return Job_Name.length > 18 ? name + '...' : name;
     };
-    const search = (searchTerm) => {
-        if (searchTerm.length > 0) {
-            const filteredData = data.filter(item =>
-                item.job_title.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-            setData(filteredData);
-        }
+    const search = () => {
+        const filteredData = initialData.filter((item) =>
+            item.job_title.toLowerCase().includes(itemToSearch.toLowerCase())
+        );
+        setData(filteredData);
     };
     const newest = () => {
         const sortedData = [...data].sort((a, b) => new Date(a.posted_at) - new Date(b.posted_at));
         setData(sortedData);
     };
+    // const { data, isLoading } = route.params;
+    // const navigation = useNavigation();
+    // const [itemToSearch, setSearch] = useState('developer');
+    // const [testing, setTesting] = useState('')
+
+
+
+
+    const JobTittleSubString = (Job_Name) => {
+        const name = Job_Name.substr(0, 18);
+        return Job_Name.length > 18 ? name + '...' : name;
+    };
+    // const SearchResults = ({ searchTerm }) => {
+    //     const { data, isLoading, error, refetch } = useFetch("search", {
+    //       query: searchTerm,
+    //       num_pages: "1",
+    //     });
+
+    //     useEffect(() => {
+    //       // Trigger a search when the component mounts or when searchTerm changes
+    //       refetch();
+    //     }, [searchTerm]);
+    // }
+
+    // const newest = () => {
+    //     const sortedData = [...data].sort((a, b) => new Date(a.posted_at) - new Date(b.posted_at));
+    //     setData(sortedData);
+    // };
     return (
         <View style={Styles.body}>
             <View style={Styles.topSearch}>
@@ -74,9 +85,9 @@ export default Search = ({ route }) => {
                 <TextInput
                     placeholder="Search here..."
                     placeholderTextColor="grey"
-                    style={Styles.TextInput('white', 250)}
-                    onChangeText={(text) => setTesting(text)} />
-                <TouchableOpacity onPress={() => { search(testing) }}>
+                    style={Styles.TextInput("black", 'white', 250)}
+                    onChangeText={(text) => setItemSearch(text)} />
+                <TouchableOpacity onPress={() => { search(itemToSearch) }}>
                     <Ionicons name="search-outline" size={24} color="grey" />
                 </TouchableOpacity>
 

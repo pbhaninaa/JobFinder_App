@@ -2,8 +2,9 @@ import { React, useEffect, useState } from 'react'
 import { AntDesign, FontAwesome, FontAwesome5, MaterialCommunityIcons, Fontisto } from '@expo/vector-icons';
 import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { fetchUsers } from '../../useFetch';
+import { fetchUsers } from '../../MyLocalDb';
 import { Styles,UsermanagementInputColor, hidePasswordEyeColor } from '../../../Styles'
+
 
 
 
@@ -16,27 +17,18 @@ export default Login = () => {
     const [users, setUsers] = useState([]);
 
     const handleSignIn = () => {
-        navigation.navigate('Home')
-        setUsername('')
-        setPassword('')
+        if (users.length > 0) {
+            alert('You have user ')
+        }else{
+            alert('no users to sign in')
+        }
+        // navigation.navigate('Home')
+        // setUsername('')
+        // setPassword('')
     };
  
     useEffect(() => {
-        fetch('http://localhost:3000/users')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-               setUsers(data.users);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Handle the error appropriately
-            });
-
+       setUsers(fetchUsers())
     }, [])
     return (
         <View style={Styles.container}>
@@ -60,7 +52,7 @@ export default Login = () => {
                     placeholderTextColor="gray"
                     autoCompleteType="off"
                     textContentType="none"
-                    style={Styles.TextInput(UsermanagementInputColor, 240)}
+                    style={Styles.TextInput("white",UsermanagementInputColor, 240)}
                     onChangeText={(value) => setUsername(value)}
                 />
             </View>
@@ -71,7 +63,7 @@ export default Login = () => {
                     autoCompleteType="off"
                     textContentType="none"
                     placeholderTextColor="gray"
-                    style={Styles.TextInput(UsermanagementInputColor, 240)}
+                    style={Styles.TextInput("white",UsermanagementInputColor, 240)}
                     onChangeText={(value) => setPassword(value)}
                 />
                 <TouchableOpacity onPress={() => { setHidePassword(!hidePassword) }}>
