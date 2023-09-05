@@ -19,7 +19,12 @@ export const passwordMismatch = (password, confirmPassword) => {
       email.length !== 0 &&
       password.length !== 0
     );
-  };
+};
+    export const SignInIsEmpty = (username, password) => {
+      return (
+        username.length !== 0 &&  password.length !== 0
+      );
+    };
   export const isValidExperience = (newObj) => {
     return newObj.company != "" && newObj.position != "" && newObj.duration != "";
   };
@@ -64,33 +69,33 @@ export const passwordMismatch = (password, confirmPassword) => {
   };
   
   
-  const useFecth = async () => {
-    const data = null
-    const axios = require('axios');
+  // const useFecth = async () => {
+  //   const data = null
+  //   const axios = require('axios');
   
-    const options = {
-      method: 'GET',
-      url: 'https://jsearch.p.rapidapi.com/search',
-      params: {
-        query: 'Python developer in Texas, USA',
-        page: '2',
-        num_pages: '2'
-      },
-      headers: {
-        'X-RapidAPI-Key': '7f1da97dd7msh84314cd0711b22cp19f0c1jsn4ffaf7348607',
-        'X-RapidAPI-Host': 'jsearch.p.rapidapi.com'
-      }
-    };
+  //   const options = {
+  //     method: 'GET',
+  //     url: 'https://jsearch.p.rapidapi.com/search',
+  //     params: {
+  //       query: 'Python developer in Texas, USA',
+  //       page: '2',
+  //       num_pages: '2'
+  //     },
+  //     headers: {
+  //       'X-RapidAPI-Key': '7f1da97dd7msh84314cd0711b22cp19f0c1jsn4ffaf7348607',
+  //       'X-RapidAPI-Host': 'jsearch.p.rapidapi.com'
+  //     }
+  //   };
   
-    try {
-      const response = await axios.request(options);
-      console.log(response.data);
-      data= response.data;
-    } catch (error) {
-      console.error(error);
-    }
-    return data;
-  }
+  //   try {
+  //     const response = await axios.request(options);
+  //     console.log(response.data);
+  //     data= response.data;
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  //   return data;
+  // }
   
   
   
