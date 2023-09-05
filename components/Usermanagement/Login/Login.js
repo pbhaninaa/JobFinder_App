@@ -7,11 +7,6 @@ import { Styles,UsermanagementInputColor, hidePasswordEyeColor } from '../../../
 
 
 import { SignInIsEmpty } from "../../../utils/validations";
-import {
-  Styles,
-  UsermanagementInputColor,
-  hidePasswordEyeColor,
-} from "../../../Styles";
 
 export default Login = () => {
   const navigation = useNavigation();
@@ -32,9 +27,9 @@ export default Login = () => {
         // setPassword('')
     };
  
-    useEffect(() => {
-       setUsers(fetchUsers())
-    }, [])
+    // useEffect(() => {
+    //    setUsers(fetchUsers())
+    // }, [])
     return (
         <View style={Styles.container}>
             <View style={Styles.flex}>
