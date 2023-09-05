@@ -17,10 +17,11 @@ export default Login = () => {
   const [users, setUsers] = useState([]);
 
     const handleSignIn = () => {
-       
-        navigation.navigate('Home')
-        // setUsername('')
-        // setPassword('')
+      
+             navigation.navigate('Home')
+      
+        setUsername('')
+        setPassword('')
     };
  
     useEffect(() => {
