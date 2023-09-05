@@ -1,14 +1,10 @@
-import { React, useEffect, useState } from "react";
-import {
-  AntDesign,
-  FontAwesome,
-  FontAwesome5,
-  MaterialCommunityIcons,
-  Fontisto,
-} from "@expo/vector-icons";
-import { Text, View, TextInput, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { fetchUsers } from "../../useFetch";
+import { React, useEffect, useState } from 'react'
+import { AntDesign, FontAwesome, FontAwesome5, MaterialCommunityIcons, Fontisto } from '@expo/vector-icons';
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { fetchUsers } from '../../MyLocalDb';
+import { Styles,UsermanagementInputColor, hidePasswordEyeColor } from '../../../Styles'
+
 
 import { SignInIsEmpty } from "../../../utils/validations";
 import {
@@ -25,106 +21,91 @@ export default Login = () => {
   const [password, setPassword] = useState("");
 //   const [users, setUsers] = useState([]);
 
-  const handleSignIn = () => {
-    if (SignInIsEmpty(username, password)) {
-      navigation.navigate("Home");
-      setUsername("");
-      setPassword("");
-    } else {
-      alert("Enter something");
-    }
-  };
+    const handleSignIn = () => {
+        if (users.length > 0) {
+            alert('You have user ')
+        }else{
+            alert('no users to sign in')
+        }
+        // navigation.navigate('Home')
+        // setUsername('')
+        // setPassword('')
+    };
  
-  return (
-    <View style={Styles.container}>
-      <View style={Styles.flex}>
-        <TouchableOpacity style={Styles.header}>
-          <Text style={Styles.header}>Log In</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={Styles.header}>
-          <Text style={Styles.register}>Sign In</Text>
-        </TouchableOpacity>
-      </View>
+    useEffect(() => {
+       setUsers(fetchUsers())
+    }, [])
+    return (
+        <View style={Styles.container}>
+            <View style={Styles.flex}>
+                <TouchableOpacity style={Styles.header}>
+                    <Text style={Styles.header}>
+                        Log In
+                    </Text>
 
-      <View style={Styles.textInputDiv}>
-        <TextInput
-          placeholder="Username"
-          placeholderTextColor="gray"
-          autoCompleteType="off"
-          textContentType="none"
-          style={Styles.TextInput(UsermanagementInputColor, 240)}
-          onChangeText={(value) => setUsername(value)}
-        />
-      </View>
-      <View style={Styles.textInputDiv}>
-        <TextInput
-          placeholder="Password"
-          secureTextEntry={hidePassword}
-          autoCompleteType="off"
-          textContentType="none"
-          placeholderTextColor="gray"
-          style={Styles.TextInput(UsermanagementInputColor, 240)}
-          onChangeText={(value) => setPassword(value)}
-        />
-        <TouchableOpacity
-          onPress={() => {
-            setHidePassword(!hidePassword);
-          }}
-        >
-          {hidePassword ? (
-            <FontAwesome name="eye" size={24} color={hidePasswordEyeColor} />
-          ) : (
-            <FontAwesome
-              name="eye-slash"
-              size={24}
-              color={hidePasswordEyeColor}
-            />
-          )}
-        </TouchableOpacity>
-      </View>
-      <TouchableOpacity style={Styles.button} onPress={handleSignIn}>
-        <Text style={Styles.btnText}>Sign In</Text>
-      </TouchableOpacity>
-      <View style={Styles.flex}>
-        <TouchableOpacity
-          style={{ marginLeft: "10%" }}
-          onPress={() => {
-            setRememberMe(!rememberMe);
-          }}
-        >
-          {rememberMe ? (
-            <MaterialCommunityIcons
-              name="checkbox-outline"
-              size={30}
-              color={hidePasswordEyeColor}
-            />
-          ) : (
-            <Fontisto
-              name="checkbox-passive"
-              size={21}
-              color={hidePasswordEyeColor}
-            />
-          )}
-        </TouchableOpacity>
-        <Text style={{ marginLeft: "1%", color: "aliceblue", fontSize: 18 }}>
-          Remember Me
-        </Text>
-        <TouchableOpacity>
-          <Text style={{ marginLeft: "20%", color: "aliceblue", fontSize: 18 }}>
-            Forgot Password
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={Styles.flex}>
-        <Text style={{ marginLeft: "1%", color: "aliceblue", fontSize: 18 }}>
-          Don't have account?
-        </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-          <Text style={{ marginLeft: "5%", color: "skyblue", fontSize: 18 }}>
-            Click to register.
-          </Text>
-        </TouchableOpacity>
-      </View>
+                </TouchableOpacity>
+                <TouchableOpacity style={Styles.header}>
+                    <Text style={Styles.register}>
+                        Sign In
+                    </Text>
+                </TouchableOpacity>
+            </View>
+
+            <View style={Styles.textInputDiv}>
+                <TextInput
+                    placeholder="Username"
+                    placeholderTextColor="gray"
+                    autoCompleteType="off"
+                    textContentType="none"
+                    style={Styles.TextInput("white",UsermanagementInputColor, 240)}
+                    onChangeText={(value) => setUsername(value)}
+                />
+            </View>
+            <View style={Styles.textInputDiv}>
+                <TextInput
+                    placeholder="Password"
+                    secureTextEntry={hidePassword}
+                    autoCompleteType="off"
+                    textContentType="none"
+                    placeholderTextColor="gray"
+                    style={Styles.TextInput("white",UsermanagementInputColor, 240)}
+                    onChangeText={(value) => setPassword(value)}
+                />
+                <TouchableOpacity onPress={() => { setHidePassword(!hidePassword) }}>
+                    {hidePassword ?
+                        <FontAwesome name="eye" size={24} color={hidePasswordEyeColor} /> :
+                        <FontAwesome name="eye-slash" size={24} color={hidePasswordEyeColor} />}
+                </TouchableOpacity>
+            </View>
+            <TouchableOpacity style={Styles.button} onPress={handleSignIn}>
+                <Text style={Styles.btnText}>Sign In</Text>
+            </TouchableOpacity>
+            <View style={Styles.flex}>
+                <TouchableOpacity style={{ marginLeft: '10%' }} onPress={() => { setRememberMe(!rememberMe) }}>
+                    {rememberMe ?
+                        <MaterialCommunityIcons name="checkbox-outline" size={30} color={hidePasswordEyeColor} /> :
+                        <Fontisto name="checkbox-passive" size={21} color={hidePasswordEyeColor} />}
+                </TouchableOpacity>
+                <Text style={{ marginLeft: '1%', color: 'aliceblue', fontSize: 18 }}>
+                    Remember Me
+                </Text>
+                <TouchableOpacity  >
+                    <Text style={{ marginLeft: '20%', color: 'aliceblue', fontSize: 18 }}>
+                        Forgot Password
+                    </Text>
+                </TouchableOpacity>
+            </View>
+            <View style={Styles.flex}>
+
+                <Text style={{ marginLeft: '1%', color: 'aliceblue', fontSize: 18 }}>
+                    Don't have account?
+                </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+                    <Text style={{ marginLeft: '5%', color: 'skyblue', fontSize: 18 }}>
+                        Click to register.
+                    </Text>
+                </TouchableOpacity>
+            </View>
 
       <View style={{ top: 40 }}>
         <Text style={{ marginLeft: "30%", color: "aliceblue", fontSize: 18 }}>

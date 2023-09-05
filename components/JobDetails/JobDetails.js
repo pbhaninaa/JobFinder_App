@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, FlatList, Image, Linking } from 'react-native';
 import { FontAwesome5, FontAwesome, Entypo, Ionicons } from '@expo/vector-icons';
 import Svg, { Path, Circle } from 'react-native-svg';
-import { LoginBtn, Styles,ratingStarColor,theme } from '../../Styles'
+import { LoginBtn, Styles, ratingStarColor, theme } from '../../Styles'
 import MapView, { Marker } from 'react-native-maps';
 import LogoutComponent from '../Commons/LogoutComponent';
 import { useNavigation } from '@react-navigation/native';
@@ -26,8 +26,8 @@ export default JobDetails = ({ route }) => {
     };
     return (
         <View style={Styles.body}>
-            <View style={{ top: 70 }}>
-            <LogoutComponent isVisible={isVisible} />
+            <View style={{ top: 60 }}>
+                <LogoutComponent isVisible={isVisible} />
                 <View style={Styles.headerView}>
                     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                         <Ionicons name="chevron-back" size={24} color="black" />
@@ -50,7 +50,7 @@ export default JobDetails = ({ route }) => {
                                 <Path d="M2.42033 15.7767C1.75758 16.0837 1 15.5998 1 14.8694V1.6875C1 1.58272 1.05086 1.43096 1.24427 1.27736C1.43942 1.12239 1.74747 1 2.125 1H14.875C15.2525 1 15.5606 1.12239 15.7557 1.27736C15.9491 1.43096 16 1.58272 16 1.6875V14.8694C16 15.5998 15.2424 16.0837 14.5797 15.7767L9.76098 13.5445C8.96115 13.174 8.03885 13.174 7.23902 13.5445L2.42033 15.7767Z" stroke="#4F5B79" stroke-width="2" />
                             </Svg>
                         </TouchableOpacity>
-                        <TouchableOpacity style={Styles.center} onPress={()=>{ setIsVisible(!isVisible)}}>
+                        <TouchableOpacity style={Styles.center} onPress={() => { setIsVisible(!isVisible) }}>
                             <Svg xmlns="http://www.w3.org/2000/svg" width="5" height="23" viewBox="0 0 5 23" fill="none">
                                 <Circle cx="2.5" cy="2.5" r="2.5" fill="#4F5B79" />
                                 <Circle cx="2.5" cy="11.5" r="2.5" fill="#4F5B79" />
@@ -80,31 +80,34 @@ export default JobDetails = ({ route }) => {
 
                     </View>
                     <View style={Styles.flex}>
-                        <Text style={Styles.salary}>{jobData.job_min_salary === null ? "Salary not disclosed" : jobData.job_min_salary}</Text>
-                        <View style={Styles.rate}>
-                            <FontAwesome name="star" size={18} color={ratingStarColor} />
-                            <Text style={{ color: ratingStarColor }}>{jobData.company_rate}</Text>
-                        </View>
+                        {jobData.job_min_salary === null ? null : <Text style={Styles.salary}>{jobData.job_min_salary}</Text>}
+                        {jobData.company_rate === undefined ? null :
+                            <View style={Styles.rate}>
+                                <FontAwesome name="star" size={18} color={ratingStarColor} />
+                                <Text style={{ color: ratingStarColor }}>{jobData.company_rate}</Text>
+                            </View>
+                        }
+
                     </View>
                 </View>
 
-
+                <View style={Styles.flex}>
+                    <TouchableOpacity onPress={() => { setShow('description') }} style={Styles.UploadCVBtn}>
+                        <Text style={Styles.btnText}>Description</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { setShow('location') }} style={Styles.UploadCVBtn}>
+                        <Text style={Styles.btnText}>Location</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { setShow('requiremets') }} style={Styles.editBtn(LoginBtn)} >
+                        <Text style={Styles.btnText}>Requiremets</Text>
+                    </TouchableOpacity>
+                </View>
                 <ScrollView style={Styles.detailsScrollView}>
-                    <View style={Styles.flex}>
-                        <TouchableOpacity onPress={() => { setShow('description') }} style={Styles.UploadCVBtn}>
-                            <Text style={Styles.btnText}>Description</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => { setShow('location') }} style={Styles.UploadCVBtn}>
-                            <Text style={Styles.btnText}>Location</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => { setShow('requiremets') }} style={Styles.editBtn(LoginBtn)} >
-                            <Text style={Styles.btnText}>Requiremets</Text>
-                        </TouchableOpacity>
-                    </View>
+
                     {show === 'requiremets' ? (
                         <View style={Styles.center}>
-                        <Text >{jobData.job_requirements}</Text>
-                    </View>
+                            <Text style={{ marginBottom: 100 }}>{jobData.job_requirements === undefined ? "Check description" : jobData.job_requirements.length}</Text>
+                        </View>
                     ) : show === 'location' ? (
                         <View style={Styles.center}>
                             <Text style={Styles.more}>{jobData.job_city}{jobData.job_state}{jobData.job_country}</Text>
@@ -124,7 +127,7 @@ export default JobDetails = ({ route }) => {
                                     description="Marker Description"
                                 />
                                 <TouchableOpacity onPress={toggleMapType} style={Styles.mapBtn}>
-                                    <Text style={{color:'aliceblue'}}>
+                                    <Text style={{ color: 'aliceblue' }}>
                                         Show {mapType === 'standard' ? 'Satellite' : 'Standard'}
                                     </Text>
                                 </TouchableOpacity>
@@ -133,7 +136,7 @@ export default JobDetails = ({ route }) => {
                         </View>
                     ) : show === 'description' ? (
                         <View style={Styles.center}>
-                            <Text >{jobData.job_description}</Text>
+                            <Text style={{ marginBottom: 150,fontSize:20 }}>{jobData.job_description}</Text>
                         </View>
                     ) :
                         <View style={Styles.center}>

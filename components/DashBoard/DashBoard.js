@@ -5,18 +5,17 @@ import { Styles,mediaBtn,primaryColor, ratingStarColor } from '../../Styles'
 import NavBar from '../Commons/NavBar';
 import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-// import useFetch from '../useFetch'
+import { useFetch } from '../useFetch'
 import UserProfileProgress from '../Progress/UserProfileProgress';
-import LogoutComponent from '../Commons/LogoutComponent';
 
-export default DashBoard = ({ route }) => {
+export default DashBoard = () => {
 
     const navigation = useNavigation();
-    const [isLoading, setIsLoading] = useState(false)
-    // const { data, isLoading, error } = useFetch("search", {
-    //     query: "developer",
-    //     num_pages: "5",
-    // });
+    // const [isLoading, setIsLoading] = useState(false)
+    const { data, isLoading, error } = useFetch("search", {
+        query: "developer",
+        num_pages: "5",
+    });
     const [loggedUser, setLoggedUser] = useState({
         "name": "Philasande",
         "surname": "Bhani",
@@ -125,69 +124,69 @@ export default DashBoard = ({ route }) => {
             }
         ]
     })
-    const [data, setData] = useState([
-        {
-            "job_id": 3,
-            "job_title": "Software Engineer",
-            "job_employment_type": "Full Time",
-            "company": "TechCo",
-            "employer_logo": "https://www.fintechfutures.com/files/2019/07/synechron.png",
-            "job_city": "San Francisco",
-            "job_country": "United States",
-            "job_state": "CA",
-            "job_posting_language": "Portugees",
-            "job_latitude": 37.7749,
-            "job_longitude": -122.4194,
-            "job_description": "We are looking for a skilled software engineer to join our development team...",
-            "job_requirements": "Bachelor's degree in Computer Science, proficiency in Java and JavaScript...",
-            "job_min_salary": "$100,000 - $120,000",
-            "posted_at": "2023-08-15T10:00:00Z",
-            "expires_at": "2023-09-15T10:00:00Z",
-            "apply_link": "https://example.com/apply/software-engineer",
-            "company_rate": 5
-        }, {
+    // const [data, setData] = useState([
+    //     {
+    //         "job_id": 3,
+    //         "job_title": "Software Engineer",
+    //         "job_employment_type": "Full Time",
+    //         "company": "TechCo",
+    //         "employer_logo": "https://www.fintechfutures.com/files/2019/07/synechron.png",
+    //         "job_city": "San Francisco",
+    //         "job_country": "United States",
+    //         "job_state": "CA",
+    //         "job_posting_language": "Portugees",
+    //         "job_latitude": 37.7749,
+    //         "job_longitude": -122.4194,
+    //         "job_description": "We are looking for a skilled software engineer to join our development team...",
+    //         "job_requirements": "Bachelor's degree in Computer Science, proficiency in Java and JavaScript...",
+    //         "job_min_salary": "$100,000 - $120,000",
+    //         "posted_at": "2023-08-15T10:00:00Z",
+    //         "expires_at": "2023-09-15T10:00:00Z",
+    //         "apply_link": "https://example.com/apply/software-engineer",
+    //         "company_rate": 5
+    //     }, {
 
 
-            "job_id": 2,
-            "job_title": "Marketing Specialist",
-            "job_employment_type": "Full Time",
-            "company": "GrowthMarketing",
-            "employer_logo": "https://www.fintechfutures.com/files/2019/07/synechron.png",
-            "job_city": "London",
-            "job_country": "United States",
-            "job_state": "USA",
-            "job_posting_language": "English",
-            "job_latitude": 40.7128,
-            "job_longitude": -74.0060,
-            "job_description": "Join our marketing team to create and execute campaigns that drive customer growth...",
-            "job_requirements": "Bachelor's degree in Marketing, experience with social media advertising...",
-            "job_min_salary": "$60,000 - $80,000",
-            "posted_at": "2023-08-20T09:30:00Z",
-            "expires_at": "2023-09-20T09:30:00Z",
-            "apply_link": "https://example.com/apply/marketing-specialist",
-            "company_rate": 3
-        },
-        {
-            "job_id": 1,
-            "job_title": "Software Engineer",
-            "job_employment_type": "Full Time",
-            "company": "TechCo",
-            "employer_logo": "https://www.fintechfutures.com/files/2019/07/synechron.png",
-            "job_city": "San Francisco",
-            "job_country": "United States",
-            "job_state": "CA",
-            "job_posting_language": "Portugees",
-            "job_latitude": 37.7749,
-            "job_longitude": -122.4194,
-            "job_description": "We are looking for a skilled software engineer to join our development team...",
-            "job_requirements": "Bachelor's degree in Computer Science, proficiency in Java and JavaScript...",
-            "job_min_salary": "$100,000 - $120,000",
-            "posted_at": "2023-08-15T10:00:00Z",
-            "expires_at": "2023-09-15T10:00:00Z",
-            "apply_link": "https://example.com/apply/software-engineer",
-            "company_rate": 5
-        }
-    ])
+    //         "job_id": 2,
+    //         "job_title": "Marketing Specialist",
+    //         "job_employment_type": "Full Time",
+    //         "company": "GrowthMarketing",
+    //         "employer_logo": "https://www.fintechfutures.com/files/2019/07/synechron.png",
+    //         "job_city": "London",
+    //         "job_country": "United States",
+    //         "job_state": "USA",
+    //         "job_posting_language": "English",
+    //         "job_latitude": 40.7128,
+    //         "job_longitude": -74.0060,
+    //         "job_description": "Join our marketing team to create and execute campaigns that drive customer growth...",
+    //         "job_requirements": "Bachelor's degree in Marketing, experience with social media advertising...",
+    //         "job_min_salary": "$60,000 - $80,000",
+    //         "posted_at": "2023-08-20T09:30:00Z",
+    //         "expires_at": "2023-09-20T09:30:00Z",
+    //         "apply_link": "https://example.com/apply/marketing-specialist",
+    //         "company_rate": 3
+    //     },
+    //     {
+    //         "job_id": 1,
+    //         "job_title": "Software Engineer",
+    //         "job_employment_type": "Full Time",
+    //         "company": "TechCo",
+    //         "employer_logo": "https://www.fintechfutures.com/files/2019/07/synechron.png",
+    //         "job_city": "San Francisco",
+    //         "job_country": "United States",
+    //         "job_state": "CA",
+    //         "job_posting_language": "Portugees",
+    //         "job_latitude": 37.7749,
+    //         "job_longitude": -122.4194,
+    //         "job_description": "We are looking for a skilled software engineer to join our development team...",
+    //         "job_requirements": "Bachelor's degree in Computer Science, proficiency in Java and JavaScript...",
+    //         "job_min_salary": "$100,000 - $120,000",
+    //         "posted_at": "2023-08-15T10:00:00Z",
+    //         "expires_at": "2023-09-15T10:00:00Z",
+    //         "apply_link": "https://example.com/apply/software-engineer",
+    //         "company_rate": 5
+    //     }
+    // ])
     const JobTittleSubString = (Job_Name) => {
         const name = Job_Name.substr(0, 18);
         return Job_Name.length > 18 ? name + '...' : name

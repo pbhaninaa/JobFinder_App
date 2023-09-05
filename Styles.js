@@ -198,8 +198,8 @@ export const Styles = StyleSheet.create({
     margin: 10,
     width: 320
   },
-  TextInput: (bgColor, InputWith) => ({
-    color: "#fff",
+  TextInput: (textColor,bgColor, InputWith) => ({
+    color: textColor,
     paddingLeft: 10,
     alignItems: center,
     justifyContent: center,
