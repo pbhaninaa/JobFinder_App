@@ -243,294 +243,322 @@ const CreateProfile = ({ navigation }) => {
     };
 
     return (
-        <View style={Styles.body}>
-            <View style={Styles.topSearch}>
-                <View style={{ flex: 0, flexDirection: 'row', gap: 70 }}>
-                    <Text style={Styles.whiteHeading}>Create Profile</Text>
+      <View style={Styles.body}>
+        <View style={Styles.topSearch}>
+          <View style={{ flex: 0, flexDirection: "row", gap: 70 }}>
+            <Text style={Styles.whiteHeading}>Create Profile</Text>
+          </View>
+        </View>
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={Styles.searchInputDivs}>
+            <TextInput
+              style={Styles.TextInput("#fff", "#fff", 230)}
+              value={firstName}
+              onChangeText={setFirstName}
+              placeholder="First Name"
+              placeholderTextColor="grey"
+            />
+            <MaterialIcons
+              name="drive-file-rename-outline"
+              size={24}
+              color="lightgrey"
+            />
+          </View>
+
+          <View style={Styles.searchInputDivs}>
+            <TextInput
+              style={Styles.TextInput("#fff", "#fff", 230)}
+              value={lastName}
+              onChangeText={setLastName}
+              placeholder="Surname"
+              placeholderTextColor="grey"
+            />
+            <MaterialIcons
+              name="drive-file-rename-outline"
+              size={24}
+              color="lightgrey"
+            />
+          </View>
+          <View style={Styles.searchInputDivs}>
+            <TextInput
+              style={Styles.TextInput("#fff", "#fff", 230)}
+              value={emailAddress}
+              onChangeText={setEmailAddress}
+              keyboardType="email-address"
+              placeholder="Email Address"
+              placeholderTextColor="grey"
+            />
+            <Fontisto name="email" size={24} color="lightgrey" />
+          </View>
+          <View style={Styles.searchInputDivs}>
+            <TextInput
+              style={Styles.TextInput("#fff", "#fff", 230)}
+              value={houseAddress}
+              onChangeText={setHouseAddress}
+              placeholder="House Adress"
+              placeholderTextColor="grey"
+            />
+            <Entypo name="address" size={24} color="lightgrey" />
+          </View>
+          <View style={Styles.searchInputDivs}>
+            <TextInput
+              style={Styles.TextInput("#fff", "#fff", 230)}
+              value={phoneNumber}
+              onChangeText={setPhoneNumber}
+              keyboardType="phone-pad"
+              placeholder="Phone Number"
+              placeholderTextColor="grey"
+            />
+            <AntDesign name="phone" size={24} color="lightgrey" />
+          </View>
+          <Picker
+            style={Styles.picker}
+            selectedValue={gender}
+            onValueChange={setGender}
+          >
+            <Picker.Item label="Select Gender" value="" />
+            <Picker.Item label="Male" value="male" />
+            <Picker.Item label="Female" value="female" />
+          </Picker>
+
+          {/* =========================Experience =========================== */}
+
+          <View style={Styles.flexingWithIcon}>
+            <Text style={Styles.headingStyle}>
+              Click here to add Experience{" "}
+            </Text>
+            <TouchableOpacity style={Styles.add} onPress={ExperienceVisible}>
+              <Text>
+                {isExperienceViewVisible ? (
+                  <AntDesign name="minuscircleo" size={24} color={theme} />
+                ) : (
+                  <AntDesign name="pluscircleo" size={24} color={theme} />
+                )}
+              </Text>
+            </TouchableOpacity>
+          </View>
+          {isExperienceViewVisible && (
+            <View>
+              <Text style={Styles.headingStyle}>Experience</Text>
+              <TextInput
+                style={Styles.TextInput("#EDE3FA", 300)}
+                placeholder="Company Name"
+                placeholderTextColor="grey"
+                onChangeText={(value) => setCompany(value)}
+              />
+              <TextInput
+                style={Styles.TextInput("#EDE3FA", 300)}
+                placeholder="Position"
+                placeholderTextColor="grey"
+                onChangeText={(value) => setPosition(value)}
+                id=""
+              />
+              <TextInput
+                style={Styles.TextInput("#EDE3FA", 300)}
+                placeholder="From - To eg.(2000 Jan - 2002 Dec)"
+                placeholderTextColor="grey"
+                onChangeText={(value) => setDuration(value)}
+              />
+              <TouchableOpacity
+                style={Styles.editBtn({ theme })}
+                onPress={SaveWorkArray}
+              >
+                <Text>Save Experience</Text>
+              </TouchableOpacity>
+              {WorkInforArray.map((data, index) => (
+                <View key={index} style={Styles.skillStyles}>
+                  <View style={Styles.selectProfilePictureButton}>
+                    <View>
+                      <Text style={Styles.headingStyle}>Experience</Text>
+                      <Text>Company Name : {data.company}</Text>
+                      <Text>Position : {data.position}</Text>
+                      <Text style={{ marginBottom: 5 }}>
+                        Period : {data.duration}
+                      </Text>
+                    </View>
+                    <TouchableOpacity
+                      style={Styles.editBtn("lightgrey")}
+                      onPress={() => ExperienceHandleDelete(index)}
+                    >
+                      <AntDesign name="delete" size={14} color="red" />
+                    </TouchableOpacity>
+                  </View>
                 </View>
+              ))}
             </View>
-            <ScrollView
-                showsHorizontalScrollIndicator={false}
-                showsVerticalScrollIndicator={false}
-            >
+          )}
 
-                <View style={Styles.searchInputDivs}>
-                    <TextInput
-                        style={Styles.TextInput("#fff", 230)}
-                        value={firstName}
-                        onChangeText={setFirstName}
-                        placeholder='First Name'
-                        placeholderTextColor="grey"
-                    />
-                    <MaterialIcons name="drive-file-rename-outline" size={24} color="lightgrey" />
-                </View>
+          {/* =========================Education =========================== */}
 
-                <View style={Styles.searchInputDivs}>
-                    <TextInput
-                        style={Styles.TextInput("#fff", 230)}
-                        value={lastName}
-                        onChangeText={setLastName}
-                        placeholder='Surname'
-                        placeholderTextColor="grey"
-                    />
-                    <MaterialIcons name="drive-file-rename-outline" size={24} color="lightgrey" />
-                </View>
-                <View style={Styles.searchInputDivs}>
-                    <TextInput
-                        style={Styles.TextInput("#fff", 230)}
-                        value={emailAddress}
-                        onChangeText={setEmailAddress}
-                        keyboardType="email-address"
-                        placeholder='Email Address'
-                        placeholderTextColor="grey"
-                    />
-                    <Fontisto name="email" size={24} color="lightgrey" />
-                </View>
-                <View style={Styles.searchInputDivs}>
-                    <TextInput
-                        style={Styles.TextInput("#fff", 230)}
-                        value={houseAddress}
-                        onChangeText={setHouseAddress}
-                        placeholder='House Adress'
-                        placeholderTextColor="grey"
-                    />
-                    <Entypo name="address" size={24} color="lightgrey" />
-                </View>
-                <View style={Styles.searchInputDivs}>
-                    <TextInput
-                        style={Styles.TextInput("#fff", 230)}
-                        value={phoneNumber}
-                        onChangeText={setPhoneNumber}
-                        keyboardType="phone-pad"
-                        placeholder='Phone Number'
-                        placeholderTextColor="grey"
-                    />
-                    <AntDesign name="phone" size={24} color="lightgrey" />
-                </View>
-                <Picker
-                    style={Styles.picker}
-                    selectedValue={gender}
-                    onValueChange={setGender}
-                >
-                    <Picker.Item label="Select Gender" value="" />
-                    <Picker.Item label="Male" value="male" />
-                    <Picker.Item label="Female" value="female" />
-                </Picker>
+          <View style={Styles.flexingWithIcon}>
+            <Text style={Styles.headingStyle}>
+              Click here to add education{" "}
+            </Text>
 
-                {/* =========================Experience =========================== */}
-
-                <View style={Styles.flexingWithIcon}>
-                    <Text style={Styles.headingStyle}>Click here to add Experience </Text>
-                    <TouchableOpacity style={Styles.add} onPress={ExperienceVisible}>
-                        <Text >
-                            {isExperienceViewVisible ? <AntDesign name="minuscircleo" size={24} color={theme} /> : <AntDesign name="pluscircleo" size={24} color={theme} />}
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-                {isExperienceViewVisible && (
-                    <View>
-                        <Text style={Styles.headingStyle}>Experience</Text>
-                        <TextInput
-                            style={Styles.TextInput("#EDE3FA", 300)}
-                            placeholder="Company Name"
-                            placeholderTextColor="grey"
-                            onChangeText={(value) => setCompany(value)}
-                        />
-                        <TextInput
-                            style={Styles.TextInput("#EDE3FA", 300)}
-                            placeholder="Position"
-                            placeholderTextColor="grey"
-                            onChangeText={(value) => setPosition(value)}
-                            id=""
-                        />
-                        <TextInput
-                            style={Styles.TextInput("#EDE3FA", 300)}
-                            placeholder="From - To eg.(2000 Jan - 2002 Dec)"
-                            placeholderTextColor="grey"
-                            onChangeText={(value) => setDuration(value)}
-                        /><TouchableOpacity style={Styles.editBtn({theme})} onPress={SaveWorkArray}>
-                            <Text >Save Experience</Text>
-                        </TouchableOpacity>
-                        {WorkInforArray.map((data, index) => (
-                            <View key={index} style={Styles.skillStyles}>
-                                <View style={Styles.selectProfilePictureButton}>
-                                    <View>
-                                        <Text style={Styles.headingStyle}>
-                                            Experience
-                                        </Text>
-                                        <Text>Company Name : {data.company}</Text>
-                                        <Text>Position : {data.position}</Text>
-                                        <Text style={{ marginBottom: 5 }}>
-                                            Period : {data.duration}
-                                        </Text>
-                                    </View>
-                                    <TouchableOpacity
-                                        style={Styles.editBtn("lightgrey")}
-                                        onPress={() => ExperienceHandleDelete(index)}
-                                    >
-                                        <AntDesign name="delete" size={14} color="red" />
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        ))}
-
-                    </View>
+            <TouchableOpacity style={Styles.add} onPress={viewHidden}>
+              <Text>
+                {isEducationViewVisible ? (
+                  <AntDesign name="minuscircleo" size={24} color={theme} />
+                ) : (
+                  <AntDesign name="pluscircleo" size={24} color={theme} />
                 )}
-
-                {/* =========================Education =========================== */}
-
-                <View style={Styles.flexingWithIcon}>
-                    <Text style={Styles.headingStyle}>Click here to add education </Text>
-
-                    <TouchableOpacity style={Styles.add} onPress={viewHidden}>
-                        <Text >
-                            {isEducationViewVisible ? <AntDesign name="minuscircleo" size={24} color={theme} /> : <AntDesign name="pluscircleo" size={24} color={theme} />}
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-                {isEducationViewVisible && (
+              </Text>
+            </TouchableOpacity>
+          </View>
+          {isEducationViewVisible && (
+            <View>
+              <Text style={Styles.headingStyle}>Education</Text>
+              <TextInput
+                style={Styles.TextInput("#EDE3FA", 300)}
+                placeholder="University"
+                placeholderTextColor="grey"
+                onChangeText={(value) => setVarsity(value)}
+              />
+              <TextInput
+                style={Styles.TextInput("#EDE3FA", 300)}
+                placeholder="Qualification"
+                placeholderTextColor="grey"
+                onChangeText={(value) => setQualification(value)}
+              />
+              <TextInput
+                style={Styles.TextInput("#EDE3FA", 300)}
+                placeholder="From - To eg.(2000 Jan - 2002 Dec)"
+                placeholderTextColor="grey"
+                onChangeText={(value) => setPeriod(value)}
+              />
+              <TouchableOpacity
+                style={Styles.editBtn({ theme })}
+                onPress={SaveEducationArray}
+              >
+                <Text>Save Education</Text>
+              </TouchableOpacity>
+              {EducationInforArray.map((data, index) => (
+                <View key={index} style={Styles.skillStyles}>
+                  <View style={Styles.selectProfilePictureButton}>
                     <View>
-                        <Text style={Styles.headingStyle}>Education</Text>
-                        <TextInput
-                            style={Styles.TextInput("#EDE3FA", 300)}
-                            placeholder="University"
-                            placeholderTextColor="grey"
-                            onChangeText={(value) => setVarsity(value)}
-                        />
-                        <TextInput
-                            style={Styles.TextInput("#EDE3FA", 300)}
-                            placeholder="Qualification"
-                            placeholderTextColor="grey"
-                            onChangeText={(value) => setQualification(value)}
-                        />
-                        <TextInput
-                            style={Styles.TextInput("#EDE3FA", 300)}
-                            placeholder="From - To eg.(2000 Jan - 2002 Dec)"
-                            placeholderTextColor="grey"
-                            onChangeText={(value) => setPeriod(value)}
-                        />
-                        <TouchableOpacity
-                            style={Styles.editBtn({theme})}
-                            onPress={SaveEducationArray}
-                        >
-                            <Text>Save Education</Text>
-                        </TouchableOpacity>
-                        {EducationInforArray.map((data, index) => (
-                            <View key={index} style={Styles.skillStyles}>
-                                <View style={Styles.selectProfilePictureButton}>
-                                    <View>
-                                        <Text style={Styles.headingStyle}>
-                                            Educationnal background
-                                        </Text>
-                                        <Text>Varsity Name : {data.varsity}</Text>
-                                        <Text>Qualification : {data.qualification}</Text>
-                                        <Text style={{ marginBottom: 5 }}>
-                                            Period : {data.period}
-                                        </Text>
-                                    </View>
-                                    <TouchableOpacity
-                                        style={Styles.editBtn("lightgrey")}
-                                        onPress={() => EducationHandleDelete(index)}
-                                    >
-                                        <AntDesign name="delete" size={14} color="red" />
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        ))}
-
+                      <Text style={Styles.headingStyle}>
+                        Educationnal background
+                      </Text>
+                      <Text>Varsity Name : {data.varsity}</Text>
+                      <Text>Qualification : {data.qualification}</Text>
+                      <Text style={{ marginBottom: 5 }}>
+                        Period : {data.period}
+                      </Text>
                     </View>
-                )}
-
-                <View style={Styles.flexingWithIcon}>
-                    <Text style={Styles.headingStyle}>Click here to add a Skill </Text>
-                    <TouchableOpacity style={Styles.add} onPress={SkillVisible}>
-                        <Text >
-                            {isSkillsViewVisible ? <AntDesign name="minuscircleo" size={24} color={theme} /> : <AntDesign name="pluscircleo" size={24} color={theme} />}
-                        </Text>
+                    <TouchableOpacity
+                      style={Styles.editBtn("lightgrey")}
+                      onPress={() => EducationHandleDelete(index)}
+                    >
+                      <AntDesign name="delete" size={14} color="red" />
                     </TouchableOpacity>
+                  </View>
                 </View>
-                {isSkillsViewVisible && (
-                    <View>
-                        <Text style={Styles.headingStyle}>Skills</Text>
-                        <TextInput
-                            style={Styles.TextInput("#EDE3FA", 300)}
-                            placeholder="Skill"
-                            placeholderTextColor="grey"
-                            onChangeText={(value) => setSkill(value)}
-                        />
-                        <View style={{ width: 340, marginBottom: 5 }}>
-                            <SelectList
-                                setSelected={(value) => setProficiency(value)}
-                                data={skillProficiency}
-                            />
-                        </View>
-                        <TouchableOpacity style={Styles.editBtn({theme})} onPress={SaveSkill}>
-                            <Text> Save Skill</Text>
-                        </TouchableOpacity>
-                        {skills.length > 0 && (
-                            <View style={{
-                                padding: 10,
-                                gap: 5,
-                                borderWidth: 1,
-                                borderColor: "#ccc",
-                                marginBottom: 5,
-                                marginTop: 5,
-                                borderRadius: 5,
-                                justifyContent: "space-between",
+              ))}
+            </View>
+          )}
 
-                            }}>
-                                {skills.map((item) => (
-                                    <View style={Styles.skillStyle} key={item.skill}>
-                                        <Text style={Styles.skillText}>{item.skill}</Text>
-                                        <TouchableOpacity style={Styles.editBtn("lightgrey")}
-                                            onPress={() => SkillHandleDelete(item.skill)}
-                                        >
-                                            <AntDesign name="delete" size={14} color="red" />
-                                        </TouchableOpacity>
-                                    </View>
-                                ))}
-                            </View>
-                        )}
-
-                        
-                    </View>
+          <View style={Styles.flexingWithIcon}>
+            <Text style={Styles.headingStyle}>Click here to add a Skill </Text>
+            <TouchableOpacity style={Styles.add} onPress={SkillVisible}>
+              <Text>
+                {isSkillsViewVisible ? (
+                  <AntDesign name="minuscircleo" size={24} color={theme} />
+                ) : (
+                  <AntDesign name="pluscircleo" size={24} color={theme} />
                 )}
-                <Text style={Styles.label}>Professional Summary</Text>
-                <TextInput
-                    style={Styles.TextArea}
-                    value={professionalSummary}
-                    onChangeText={setProfessionalSummary}
-                    placeholder='Short summary'
-                    placeholderTextColor="grey"
-                    multiline
+              </Text>
+            </TouchableOpacity>
+          </View>
+          {isSkillsViewVisible && (
+            <View>
+              <Text style={Styles.headingStyle}>Skills</Text>
+              <TextInput
+                style={Styles.TextInput("#EDE3FA", 300)}
+                placeholder="Skill"
+                placeholderTextColor="grey"
+                onChangeText={(value) => setSkill(value)}
+              />
+              <View style={{ width: 340, marginBottom: 5 }}>
+                <SelectList
+                  setSelected={(value) => setProficiency(value)}
+                  data={skillProficiency}
                 />
-                {/* ============================================================== */}
-                <TouchableOpacity
-                    style={Styles.selectProfilePictureButton}
-                    onPress={handleSelectProfilePicture}
+              </View>
+              <TouchableOpacity
+                style={Styles.editBtn({ theme })}
+                onPress={SaveSkill}
+              >
+                <Text> Save Skill</Text>
+              </TouchableOpacity>
+              {skills.length > 0 && (
+                <View
+                  style={{
+                    padding: 10,
+                    gap: 5,
+                    borderWidth: 1,
+                    borderColor: "#ccc",
+                    marginBottom: 5,
+                    marginTop: 5,
+                    borderRadius: 5,
+                    justifyContent: "space-between",
+                  }}
                 >
-                    <View style={Styles.UploadCVBtn}>
-                        <Feather name="upload" size={24} color="black" />
-                        <Text style={Styles.label}>
-                            {profilePicture ? "Uploaded" : " Upload picture"}
-                        </Text>
+                  {skills.map((item) => (
+                    <View style={Styles.skillStyle} key={item.skill}>
+                      <Text style={Styles.skillText}>{item.skill}</Text>
+                      <TouchableOpacity
+                        style={Styles.editBtn("lightgrey")}
+                        onPress={() => SkillHandleDelete(item.skill)}
+                      >
+                        <AntDesign name="delete" size={14} color="red" />
+                      </TouchableOpacity>
                     </View>
+                  ))}
+                </View>
+              )}
+            </View>
+          )}
+          <Text style={Styles.label}>Professional Summary</Text>
+          <TextInput
+            style={Styles.TextArea}
+            value={professionalSummary}
+            onChangeText={setProfessionalSummary}
+            placeholder="Short summary"
+            placeholderTextColor="grey"
+            multiline
+          />
+          {/* ============================================================== */}
+          <TouchableOpacity
+            style={Styles.selectProfilePictureButton}
+            onPress={handleSelectProfilePicture}
+          >
+            <View style={Styles.UploadCVBtn}>
+              <Feather name="upload" size={24} color="black" />
+              <Text style={Styles.label}>
+                {profilePicture ? "Uploaded" : " Upload picture"}
+              </Text>
+            </View>
 
-                    <Text style={Styles.label}>
-                        {profilePicture ? (
-                            <FontAwesome name="picture-o" size={24} color="black" />
-                        ) : (
-                            " "
-                        )}
-                    </Text>
-                </TouchableOpacity>
+            <Text style={Styles.label}>
+              {profilePicture ? (
+                <FontAwesome name="picture-o" size={24} color="black" />
+              ) : (
+                " "
+              )}
+            </Text>
+          </TouchableOpacity>
 
-                <TouchableOpacity style={Styles.applyBtn(350)} onPress={handleSaveProfile}>
-                    <Text style={Styles.applyBtnText}>Save Details</Text>
-                </TouchableOpacity>
-
-            </ScrollView></View>
-
+          <TouchableOpacity
+            style={Styles.applyBtn(350)}
+            onPress={handleSaveProfile}
+          >
+            <Text style={Styles.applyBtnText}>Save Details</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </View>
     );
 };
 

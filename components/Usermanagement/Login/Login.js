@@ -14,22 +14,18 @@ export default Login = () => {
   const [hidePassword, setHidePassword] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-//   const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
 
     const handleSignIn = () => {
-        if (users.length > 0) {
-            alert('You have user ')
-        }else{
-            alert('no users to sign in')
-        }
-        // navigation.navigate('Home')
+       
+        navigation.navigate('Home')
         // setUsername('')
         // setPassword('')
     };
  
-    // useEffect(() => {
-    //    setUsers(fetchUsers())
-    // }, [])
+    useEffect(() => {
+       setUsers(fetchUsers())
+    }, [])
     return (
         <View style={Styles.container}>
             <View style={Styles.flex}>
