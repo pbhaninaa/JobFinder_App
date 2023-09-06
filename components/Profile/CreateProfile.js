@@ -9,6 +9,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  FlatList
 } from "react-native";
 import {
   isNotEmpty,
@@ -43,29 +44,32 @@ const CreateProfile = ({ route }) => {
     education = [],
     experience = [],
     phone = "",
-    user_skills = [],
+    skills = [],
     summary = "",
-    user_profilePicture = null,
+    image = null,
+    profession = "",
   } = data;
+
 
   const [firstName, setFirstName] = useState(name);
   const [lastName, setLastName] = useState(surname);
   const [emailAddress, setEmailAddress] = useState(email);
   const [houseAddress, setHouseAddress] = useState(homeAddress);
   const [gender, setGender] = useState(user_gender);
-  const [EducationInforArray, setEsducationInforArray] = useState([education]);
-  const [WorkInforArray, setWorkInforArray] = useState([experience]);
+  const [professionality, setProfesion] = useState(profession);
+  const [EducationInforArray, setEsducationInforArray] = useState(education);
+  const [WorkInforArray, setWorkInforArray] = useState(experience);
   const [phoneNumber, setPhoneNumber] = useState(phone);
-  const [skills, setSkills] = useState([user_skills]);
   const [professionalSummary, setProfessionalSummary] = useState(summary);
-  const [skillList, setSkillList] = useState([skills]);
+  const [skillList, setSkillList] = useState(skills);
   const [disabled, setDisabled] = useState(false);
-  const [profilePicture, setProfilePicture] = useState(user_profilePicture);
+  const [profilePicture, setProfilePicture] = useState(image);
 
   useEffect(() => {
     // Fetch the list of skills from the backend API
     user_gender !== undefined ? setDisabled(false) : setDisabled(true);
     fetchSkillList();
+    console.log("=================" + skillList.length + "==================");
   }, []);
 
   const fetchSkillList = async () => {
@@ -80,8 +84,6 @@ const CreateProfile = ({ route }) => {
   };
 
   const handleSaveProfile = async () => {
-    // try {
-    //   // Prepare the user profile data to be saved
     if (
       isNotEmpty(
         firstName,
@@ -92,7 +94,7 @@ const CreateProfile = ({ route }) => {
         experience,
         EducationInforArray,
         phoneNumber,
-        skills,
+        skillList,
         professionalSummary,
         profilePicture
       )
@@ -108,9 +110,10 @@ const CreateProfile = ({ route }) => {
             experience,
             EducationInforArray,
             phoneNumber,
-            skills,
+            skillList,
             professionalSummary,
             profilePicture,
+            professionality
           };
           console.log(userProfile);
           navigation.navigate("Home");
@@ -134,30 +137,30 @@ const CreateProfile = ({ route }) => {
     // }
   };
 
-const handleSelectProfilePicture = async () => {
-  try {
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+  const handleSelectProfilePicture = async () => {
+    try {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    if (status !== "granted") {
-      console.log("Permission denied to access media library.");
-      return;
+      if (status !== "granted") {
+        console.log("Permission denied to access media library.");
+        return;
+      }
+
+      const result = await ImagePicker.launchImageLibraryAsync();
+
+      if (result.canceled) {
+        console.log("Image selection cancelled.");
+        return;
+      }
+
+      if (result.assets && result.assets.length > 0) {
+        const selectedImage = result.assets[0];
+        setProfilePicture(selectedImage.uri);
+      }
+    } catch (error) {
+      console.log("Error selecting profile picture:", error);
     }
-
-    const result = await ImagePicker.launchImageLibraryAsync();
-
-    if (result.canceled) {
-      console.log("Image selection cancelled.");
-      return;
-    }
-
-    if (result.assets && result.assets.length > 0) {
-      const selectedImage = result.assets[0];
-      setProfilePicture(selectedImage.uri);
-    }
-  } catch (error) {
-    console.log("Error selecting profile picture:", error);
-  }
-};
+  };
 
   //  ============================== testing ===============================
   const [isEducationViewVisible, setIsEducationViewVisible] = useState(false);
@@ -190,8 +193,9 @@ const handleSelectProfilePicture = async () => {
     setEsducationInforArray(newArray);
   };
   const SkillHandleDelete = (itemName) => {
-    const updatedSkills = skills.filter((item) => item.skill !== itemName);
-    setSkills(updatedSkills);
+    const newSkills = [...skillList];
+    newSkills.splice(index, 1);
+    setSkillList(newSkills);
   };
 
   const [varsity, setVarsity] = useState("");
@@ -246,15 +250,16 @@ const handleSelectProfilePicture = async () => {
   ];
   const [skill, setSkill] = useState("");
   const [proficiency, setProficiency] = useState("");
+
   const SaveSkill = () => {
-    const newObj = {
-      skill: skill,
+    const newSkill = {
+      name: skill,
       proficiency: proficiency,
     };
-    const foundObject = skills.find((obj) => obj.skill === newObj.skill);
-    if (isValidSkill(newObj)) {
+    const foundObject = skillList.find((obj) => obj.name === newSkill.name);
+    if (isValidSkill(newSkill)) {
       if (!foundObject) {
-        setSkills((prevArray) => [...prevArray, newObj]);
+        setSkillList((prevArray) => [...prevArray, newSkill]);
       } else {
         alert("Skill Already Exist");
       }
@@ -262,6 +267,7 @@ const handleSelectProfilePicture = async () => {
       alert("Set skill and how proficient are you ");
     }
   };
+
 
   return (
     <View style={Styles.body}>
@@ -306,6 +312,20 @@ const handleSelectProfilePicture = async () => {
         <View style={Styles.searchInputDivs}>
           <TextInput
             style={Styles.TextInput("#000", "#fff", 230)}
+            value={profession}
+            onChangeText={(value) => { setProfesion(value) }}
+            placeholder="Profession"
+            placeholderTextColor="grey"
+          />
+          <MaterialIcons
+            name="drive-file-rename-outline"
+            size={24}
+            color="lightgrey"
+          />
+        </View>
+        <View style={Styles.searchInputDivs}>
+          <TextInput
+            style={Styles.TextInput("#000", "#fff", 230)}
             value={emailAddress}
             onChangeText={setEmailAddress}
             keyboardType="email-address"
@@ -332,7 +352,7 @@ const handleSelectProfilePicture = async () => {
             keyboardType="phone-pad"
             placeholder="Phone Number"
             placeholderTextColor="grey"
-            editable={disabled}
+          // editable={disabled}
           />
           <AntDesign name="phone" size={24} color="lightgrey" />
         </View>
@@ -362,32 +382,32 @@ const handleSelectProfilePicture = async () => {
           </TouchableOpacity>
         </View>
         {isExperienceViewVisible && (
-          <View>
+          <View style={{ paddingLeft: 10 }}>
             <Text style={Styles.headingStyle}>Experience</Text>
             <TextInput
-              style={Styles.TextInput("#EDE3FA", 300)}
+              style={Styles.TextInput(theme, "#EDE3FA", 320)}
               placeholder="Company Name"
               placeholderTextColor="grey"
               onChangeText={(value) => setCompany(value)}
             />
             <TextInput
-              style={Styles.TextInput("#EDE3FA", 300)}
+              style={Styles.TextInput(theme, "#EDE3FA", 320)}
               placeholder="Position"
               placeholderTextColor="grey"
               onChangeText={(value) => setPosition(value)}
               id=""
             />
             <TextInput
-              style={Styles.TextInput("#EDE3FA", 300)}
+              style={Styles.TextInput(theme, "#EDE3FA", 320)}
               placeholder="From - To eg.(2000 Jan - 2002 Dec)"
               placeholderTextColor="grey"
               onChangeText={(value) => setDuration(value)}
             />
             <TouchableOpacity
-              style={Styles.editBtn({ theme })}
+              style={Styles.editBtn(theme)}
               onPress={SaveWorkArray}
             >
-              <Text>Save Experience</Text>
+              <Text style={{ color: '#fff' }}>Save Experience</Text>
             </TouchableOpacity>
             {WorkInforArray.map((data, index) => (
               <View key={index} style={Styles.skillStyles}>
@@ -401,7 +421,7 @@ const handleSelectProfilePicture = async () => {
                     </Text>
                   </View>
                   <TouchableOpacity
-                    style={Styles.editBtn("lightgrey")}
+                    style={Styles.deleteButton}
                     onPress={() => ExperienceHandleDelete(index)}
                   >
                     <AntDesign name="delete" size={14} color="red" />
@@ -428,47 +448,45 @@ const handleSelectProfilePicture = async () => {
           </TouchableOpacity>
         </View>
         {isEducationViewVisible && (
-          <View>
+          <View style={{ paddingLeft: 10 }}>
             <Text style={Styles.headingStyle}>Education</Text>
             <TextInput
-              style={Styles.TextInput("#EDE3FA", 300)}
+              style={Styles.TextInput(theme, "#EDE3FA", 320)}
               placeholder="University"
               placeholderTextColor="grey"
               onChangeText={(value) => setVarsity(value)}
             />
             <TextInput
-              style={Styles.TextInput("#EDE3FA", 300)}
+              style={Styles.TextInput(theme, "#EDE3FA", 320)}
               placeholder="Qualification"
               placeholderTextColor="grey"
               onChangeText={(value) => setQualification(value)}
             />
             <TextInput
-              style={Styles.TextInput("#EDE3FA", 300)}
+              style={Styles.TextInput(theme, "#EDE3FA", 320)}
               placeholder="From - To eg.(2000 Jan - 2002 Dec)"
               placeholderTextColor="grey"
               onChangeText={(value) => setPeriod(value)}
             />
             <TouchableOpacity
-              style={Styles.editBtn({ theme })}
+              style={Styles.editBtn(theme)}
               onPress={SaveEducationArray}
             >
-              <Text>Save Education</Text>
+              <Text style={{ color: '#fff' }}>Save Education</Text>
             </TouchableOpacity>
             {EducationInforArray.map((data, index) => (
               <View key={index} style={Styles.skillStyles}>
                 <View style={Styles.selectProfilePictureButton}>
                   <View>
-                    <Text style={Styles.headingStyle}>
-                      Educationnal background
-                    </Text>
-                    <Text>Varsity Name : {data.varsity}</Text>
-                    <Text>Qualification : {data.qualification}</Text>
+                    <Text style={Styles.headingStyle}>Experience</Text>
+                    <Text>Company Name : {data.varsity}</Text>
+                    <Text>Position : {data.qualification}</Text>
                     <Text style={{ marginBottom: 5 }}>
                       Period : {data.period}
                     </Text>
                   </View>
                   <TouchableOpacity
-                    style={Styles.editBtn("lightgrey")}
+                    style={Styles.deleteButton}
                     onPress={() => EducationHandleDelete(index)}
                   >
                     <AntDesign name="delete" size={14} color="red" />
@@ -492,45 +510,44 @@ const handleSelectProfilePicture = async () => {
           </TouchableOpacity>
         </View>
         {isSkillsViewVisible && (
-          <View>
+          <View style={{ paddingLeft: 10 }}>
             <Text style={Styles.headingStyle}>Skills</Text>
             <TextInput
-              style={Styles.TextInput("#EDE3FA", 300)}
+              style={Styles.TextInput(theme, "#EDE3FA", 310)}
               placeholder="Skill"
               placeholderTextColor="grey"
-              onChangeText={(value) => setSkill(value)}
+              onChangeText={(value) => setSkill(value)} // Setting skillList as a string here
             />
-            <View style={{ width: 340, marginBottom: 5 }}>
+
+            <View style={{ width: 310, marginBottom: 5, marginLeft: 5 }}>
               <SelectList
                 setSelected={(value) => setProficiency(value)}
                 data={skillProficiency}
               />
             </View>
             <TouchableOpacity
-              style={Styles.editBtn({ theme })}
+              style={Styles.editBtn(theme)}
               onPress={SaveSkill}
             >
-              <Text> Save Skill</Text>
+              <Text style={{ color: '#fff' }}> Save Skill</Text>
             </TouchableOpacity>
-            {skills.length > 0 && (
+            {skillList.length > 0 && (
               <View
                 style={{
-                  padding: 10,
+                  // padding: 15,
                   gap: 5,
-                  borderWidth: 1,
-                  borderColor: "#ccc",
                   marginBottom: 5,
                   marginTop: 5,
                   borderRadius: 5,
                   justifyContent: "space-between",
                 }}
               >
-                {skills.map((item) => (
-                  <View style={Styles.skillStyle} key={item.skill}>
-                    <Text style={Styles.skillText}>{item.skill}</Text>
+                {skillList.map((item) => (
+                  <View style={Styles.skillStyling} key={item.skill}>
+                    <Text style={Styles.skillText}>{item.name}</Text>
                     <TouchableOpacity
-                      style={Styles.editBtn("lightgrey")}
-                      onPress={() => SkillHandleDelete(item.skill)}
+                      style={Styles.deleteButton}
+                      onPress={() => SkillHandleDelete(item.name)}
                     >
                       <AntDesign name="delete" size={14} color="red" />
                     </TouchableOpacity>
@@ -560,7 +577,6 @@ const handleSelectProfilePicture = async () => {
               {profilePicture ? "Uploaded" : " Upload picture"}
             </Text>
           </View>
-
           <Text style={Styles.label}>
             {profilePicture ? (
               <FontAwesome name="picture-o" size={24} color="black" />

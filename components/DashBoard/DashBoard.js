@@ -27,7 +27,7 @@ export default DashBoard = () => {
         "profession": "Software Engineer",
         "summary": "I did Computer application Technology in High school. That's when I obtained Microsoft Office (Spreadsheet, Word, Access, Presentation, One Note etc.) Skills. Then I did Diploma in Information and Communication Technology (ICT), I also participated in a Learnership in Codetribe at MLab in Northern cape at Kimberly and that’s where I have obtained skills in website design and website development using HTML, JavaScript, React and React Native.",
         "image": "https://media.licdn.com/dms/image/D4D03AQFTStwijtd3cQ/profile-displayphoto-shrink_800_800/0/1667561618300?e=2147483647&v=beta&t=cpHaD4zh9UkvFdcAQ375wOq9L4myHvwTCAWWCq9LUSc",
-        "skills": ["Javascript", "Java", "Html and CSS", "AngularJS", "ReactJS", "ReactNative", "VueJS"],
+        "skills": [ {name:"Javascript",proficiency:"Junior"},{name:"Java",proficiency:"Intermediate"},{name:"HTML and CSS",proficiency:"Senior"},{name:"SQL",proficiency:"Senior"},{name:"VB.Net",proficiency:"Intermediate"},],
         "experience": [
             {
                 "id": 1,

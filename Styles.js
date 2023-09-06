@@ -5,6 +5,7 @@ export const theme ="#662DAF"
 export const primaryColor = "#EFE3FF"
 // #461584 darkPurple
 export const UsermanagementInputColor = "#461584"
+export const lightPinkColor= "#faf6ff"
 // #A084E8 media Buttons
 export const mediaBtn = "#A084E8"
 //"#C8ACED" hide password color 
@@ -471,14 +472,7 @@ export const Styles = StyleSheet.create({
     alignItems: center,
     justifyContent: center
   },
-  selectProfilePictureButton: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 8,
-    padding: 5,
-    marginBottom: 10,
-  },
+
   label: {
     fontSize: 16,
     fontWeight: "bold",
@@ -681,15 +675,15 @@ export const Styles = StyleSheet.create({
     marginBottom: 10,
   },
   skillStyles: {
-    paddingLeft: 5,
-    borderWidth: 2,
-    borderColor: "lightgrey",
-    borderWidth: 1,
-    width: "90%",
-    borderRadius: 5,
-    marginBottom: 10,
-    margin: "5%",
+  borderStyle: "none",
+  borderColor:lightPinkColor,
+  borderWidth: 1,
+  width: "90%",
+  borderRadius: 5,
+  marginBottom: 10,
+  marginTop: 10,
   },
+  
   skillItemActive: {
     backgroundColor: "#007bff",
   },
@@ -697,6 +691,13 @@ export const Styles = StyleSheet.create({
     color: "#333",
   },
   selectProfilePictureButton: {
+    flex: 0,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 8,
+    marginBottom: 10,
+  },
+  showEducation: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -704,18 +705,18 @@ export const Styles = StyleSheet.create({
     padding: 5,
     marginBottom: 10,
   },
-  // skillStyles: {
-  //   paddingLeft: 5,
-  //   borderWidth: 2,
-  //   borderColor: "lightgrey",
-  //   borderWidth: 1,
-  //   width: "90%",
-  //   borderRadius: 5,
-  //   marginBottom: 10,
-  //   margin: "5%",
-  // },
   skillStyle: {
     padding: 15,
+    flex: 0,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: '#EEE3FD',
+    borderRadius: 15
+  },
+  skillStyling: {
+    padding: 15,
+    width: 318,
     flex: 0,
     flexDirection: "row",
     alignItems: "center",
@@ -755,6 +756,17 @@ export const Styles = StyleSheet.create({
     flexDirection: 'row',
     borderRadius: 15
   }),
+  deleteButton: {
+    padding: 5,
+    width: 50,
+    flexShrink: 0,
+    backgroundColor: 'lightgrey',
+    justifyContent: 'space-evenly',
+    alignItems: center,
+    flex: 0,
+    flexDirection: 'row',
+    borderRadius: 5
+  },
   detailsScrollView: {
     width: 375,
     backgroundColor: whiteColor,
